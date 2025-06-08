@@ -1,5 +1,6 @@
 import React from "react";
 import "./Categories.css";
+import CategoryItem from "./CategoryItem";
 
 const Categories = () => {
   return (
@@ -11,7 +12,8 @@ const Categories = () => {
             <p>Summer Collection New Morden Design</p>
           </div>
           <ul className="category-list">
-            <li className="category-item">
+            <CategoryItem />
+            {/* <li className="category-item">
               <a href="#">
                 <img
                   src="img/categories/categories1.png"
@@ -70,7 +72,7 @@ const Categories = () => {
                 />
                 <span className="category-title"> Fashion </span>
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </section>
