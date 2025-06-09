@@ -1,5 +1,6 @@
 import React from "react";
 import "./Products.css";
+import ProductItem from "./ProductItem";
 const Products = () => {
   return (
     <>
@@ -10,65 +11,9 @@ const Products = () => {
             <p>Summer Collection New Morden Design</p>
           </div>
           <div className="product-wrapper product-carousel2">
-            <div className="glide__track" data-glide-el="track">
+            <div className="glide__track">
               <ul className="product-list glide__slides">
-                <li className="product-item glide__slide">
-                  <div className="product-image">
-                    <a href="#">
-                      <img
-                        src="img/products/product1/1.png"
-                        alt
-                        className="img1"
-                      />
-                      <img
-                        src="img/products/product1/2.png"
-                        alt
-                        className="img2"
-                      />
-                    </a>
-                  </div>
-                  <div className="product-info">
-                    <a href="$" className="product-title">
-                      Analogue Resin Strap
-                    </a>
-                    <ul className="product-star">
-                      <li>
-                        <i className="bi bi-star-fill" />
-                      </li>
-                      <li>
-                        <i className="bi bi-star-fill" />
-                      </li>
-                      <li>
-                        <i className="bi bi-star-fill" />
-                      </li>
-                      <li>
-                        <i className="bi bi-star-fill" />
-                      </li>
-                      <li>
-                        <i className="bi bi-star-half" />
-                      </li>
-                    </ul>
-                    <div className="product-prices">
-                      <strong className="new-price">$108.00</strong>
-                      <span className="old-price">$165.00</span>
-                    </div>
-                    <span className="product-discount">-17%</span>
-                    <div className="product-links">
-                      <button>
-                        <i className="bi bi-basket-fill" />
-                      </button>
-                      <button>
-                        <i className="bi bi-heart-fill" />
-                      </button>
-                      <a href="#">
-                        <i className="bi bi-eye-fill" />
-                      </a>
-                      <a href="#">
-                        <i className="bi bi-share-fill" />
-                      </a>
-                    </div>
-                  </div>
-                </li>
+                <ProductItem />
                 <li className="product-item glide__slide">
                   <div className="product-image">
                     <a href="#">
@@ -242,7 +187,7 @@ const Products = () => {
                 </li>
               </ul>
             </div>
-            <div className="glide__arrows" data-glide-el="controls">
+            <div className="glide__arrows">
               <button
                 className="glide__arrow glide__arrow--left"
                 data-glide-dir="<"

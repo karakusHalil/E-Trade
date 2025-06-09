@@ -5,8 +5,8 @@
 }
 
 .products .product-list {
-  /*   display: flex;
+  display: flex;
   gap: 20px;
-  flex-wrap: wrap; */
+  /* flex-wrap: wrap; */
 }
 /*! products end  */
