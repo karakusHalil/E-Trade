@@ -5,6 +5,7 @@ import Sliders from "./components/Sliders/Sliders";
 import "./App.css";
 import Categories from "./components/Categories/Categories";
 import Products from "./components/Products/Products";
+import Campaigns from "./components/Campaigns/Campaigns";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Sliders />
       <Categories />
       <Products />
+      <Campaigns />
       <Policy />
       <Footer />
     </div>
