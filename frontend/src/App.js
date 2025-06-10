@@ -6,6 +6,7 @@ import Categories from "./components/Categories/Categories";
 import Products from "./components/Products/Products";
 import Campaigns from "./components/Campaigns/Campaigns";
 import ProductSingle from "./components/Products/ProductSingle.jsx";
+import Blogs from "./components/Blogs/Blogs.jsx";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Products />
       <Campaigns />
       <ProductSingle />
+      <Blogs />
       <Policy />
       <Footer />
     </div>
