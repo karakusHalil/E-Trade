@@ -1,4 +1,5 @@
 import React from "react";
+import BlogItem from "./BlogItem";
 import "./Blogs.css";
 const Blogs = () => {
   return (
@@ -10,23 +11,10 @@ const Blogs = () => {
             <p>Summer Collection New Morden Design</p>
           </div>
           <ul className="blog-list">
-            <li className="blog-item">
-              <a href="#" className="blog-image">
-                <img src="img/blogs/blog1.jpg" alt />
-              </a>
-              <div className="blog-info">
-                <div className="blog-info-top">
-                  <span>25 Feb, 2021 </span>-<span>0 Comments</span>
-                </div>
-                <div className="blog-info-center">
-                  <a href="#">Aliquam hendrerit mi metus</a>
-                </div>
-                <div className="blog-info-bottom">
-                  <a href="#">Read More</a>
-                </div>
-              </div>
-            </li>
-            <li className="blog-item">
+            <BlogItem />
+            <BlogItem />
+            <BlogItem />
+            {/* <li className="blog-item">
               <a href="#" className="blog-image">
                 <img src="img/blogs/blog2.jpg" alt />
               </a>
@@ -57,7 +45,7 @@ const Blogs = () => {
                   <a href="#">Read More</a>
                 </div>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </section>
