@@ -1,4 +1,5 @@
 import React from "react";
+import BrandItem from "./BrandItem";
 import "./Brands.css";
 const Brands = () => {
   return (
@@ -6,11 +7,7 @@ const Brands = () => {
       <section className="brands">
         <div className="container">
           <ul className="brand-list">
-            <li className="brand-item">
-              <a href="#">
-                <img src="img/brands/brand1.png" alt />
-              </a>
-            </li>
+            <BrandItem />
             <li className="brand-item">
               <a href="#">
                 <img src="img/brands/brand2.png" alt />
