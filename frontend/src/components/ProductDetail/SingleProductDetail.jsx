@@ -1,6 +1,7 @@
 import Breadcrumb from "./BreadCrumb/Breadcrumb";
 import SingleTabs from "./SingleTabs/SingleTabs";
 import SingleContent from "./SingleContent";
+import CampaignSingle from "../CampaignSingle/CampaignSingle";
 import "./SingleProductDetail.css";
 
 const SingleProductDetail = () => {
@@ -16,6 +17,7 @@ const SingleProductDetail = () => {
             <SingleTabs />
           </div>
         </div>
+        <CampaignSingle />
       </section>
     </>
   );
