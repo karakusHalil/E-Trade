@@ -4,13 +4,13 @@ import Policy from "../Layout/policy/Policy";
 import Dialog from "../Modals/Dialog/Dialog";
 import Search from "../Modals/Search/Search";
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
     <>
       <Header />
       <Search />
       <Dialog />
-      
+      {children}
       <Policy />
       <Footer />
     </>

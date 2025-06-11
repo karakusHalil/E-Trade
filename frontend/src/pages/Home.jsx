@@ -1,6 +1,3 @@
-import Footer from "../components/Layout/footer/Footer.jsx";
-import Header from "../components/Layout/header/Header";
-import Policy from "../components/Layout/policy/Policy";
 import Sliders from "../components/Sliders/Sliders";
 import Categories from "../components/Categories/Categories";
 import Products from "../components/Products/Products";
@@ -13,7 +10,6 @@ import CampaignSingle from "../components/CampaignSingle/CampaignSingle.jsx";
 const Home = () => {
   return (
     <>
-      <Header />
       <Sliders />
       <Categories />
       <Products />
@@ -22,8 +18,6 @@ const Home = () => {
       <Blogs />
       <Brands />
       <CampaignSingle />
-      <Policy />
-      <Footer />
     </>
   );
 };
