@@ -1,7 +1,7 @@
-import React from "react";
+import PropTypes from "prop-types";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ setIsSearchVisible }) => {
   return (
     <>
       <header>
@@ -191,7 +191,10 @@ const Header = () => {
                   <a href="account.html" className="header-account">
                     <i className="bi bi-person" />
                   </a>
-                  <button className="search-button">
+                  <button
+                    className="search-button"
+                    onClick={() => setIsSearchVisible(true)}
+                  >
                     <i className="bi bi-search" />
                   </button>
                   <a href="#">
@@ -214,3 +217,7 @@ const Header = () => {
 };
 
 export default Header;
+
+Header.propTypes = {
+  setIsSearchVisible: PropTypes.func,
+};

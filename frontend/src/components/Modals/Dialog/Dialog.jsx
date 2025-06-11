@@ -30,6 +30,7 @@ const Dialog = () => {
             </div>
           </div>
         </div>
+        <div className="modal-overlay"></div>
       </div>
     </>
   );

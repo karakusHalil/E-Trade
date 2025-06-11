@@ -18,7 +18,18 @@
   opacity: 1;
 }
 
-.modal-dialog::after {
+/* .modal-dialog::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+} */
+
+.modal-overlay {
   content: "";
   width: 100%;
   height: 100%;

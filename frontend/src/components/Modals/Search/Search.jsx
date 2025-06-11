@@ -1,9 +1,10 @@
+import PropTypes from "prop-types";
 import "./Search.css";
 
-const Search = () => {
+const Search = ({ isSearchVisible, setIsSearchVisible }) => {
   return (
     <>
-      <div className="modal-search">
+      <div className={`modal-search ${isSearchVisible ? "active" : ""}`}>
         <div className="modal-wrapper">
           <h3 className="modal-title">Search for products</h3>
           <p className="modal-text">
@@ -46,11 +47,24 @@ const Search = () => {
               </a>
             </div>
           </div>
-          <i className="bi bi-x-circle" id="close-search" />
+          <i
+            className="bi bi-x-circle"
+            id="close-search"
+            onClick={() => setIsSearchVisible(false)}
+          />
         </div>
+        <div
+          className="modal-overlay"
+          onClick={() => setIsSearchVisible(false)}
+        ></div>
       </div>
     </>
   );
 };
 
 export default Search;
+
+Search.propTypes = {
+  isSearchVisible: PropTypes.bool,
+  setIsSearchVisible: PropTypes.func,
+};
