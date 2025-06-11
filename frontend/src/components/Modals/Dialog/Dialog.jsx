@@ -1,10 +1,11 @@
+import PropTypes from "prop-types";
 import "./Dialog.css";
-const Dialog = () => {
+const Dialog = ({ isDialogVisible, handleClosed }) => {
   return (
     <>
-      <div className="modal-dialog">
+      <div className={`modal-dialog ${isDialogVisible ? "active" : ""}`}>
         <div className="modal-content">
-          <button className="modal-close">
+          <button className="modal-close" onClick={handleClosed}>
             <i className="bi bi-x" />
           </button>
           <div className="modal-image">
@@ -30,10 +31,15 @@ const Dialog = () => {
             </div>
           </div>
         </div>
-        <div className="modal-overlay"></div>
+        <div className="modal-overlay" onClick={handleClosed}></div>
       </div>
     </>
   );
 };
 
 export default Dialog;
+
+Dialog.propTypes = {
+  isDialogVisible: PropTypes.bool,
+  handleClosed: PropTypes.func,
+};

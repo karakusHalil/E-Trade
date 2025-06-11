@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Footer from "../Layout/footer/Footer";
 import Header from "../Layout/header/Header";
@@ -8,7 +8,23 @@ import Search from "../Modals/Search/Search";
 
 const MainLayout = ({ children }) => {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const [isDialogVisible, setIsDialogVisible] = useState(true);
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
+
+  useEffect(() => {
+    const isClosed = sessionStorage.getItem("dialog-closed");
+    if (!isClosed) {
+      const timer = setTimeout(() => {
+        setIsDialogVisible(true);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleClosed = () => {
+    setIsDialogVisible(false);
+    sessionStorage.setItem("dialog-closed", "true");
+  };
+
   return (
     <>
       <Header setIsSearchVisible={setIsSearchVisible} />
@@ -18,7 +34,7 @@ const MainLayout = ({ children }) => {
       />
       <Dialog
         isDialogVisible={isDialogVisible}
-        setIsDialogVisible={setIsDialogVisible}
+        handleClosed={handleClosed}
       />
       {children}
       <Policy />

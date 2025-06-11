@@ -13,8 +13,8 @@
   opacity: 0;
 }
 
-.modal-dialog.show {
-  visibility: visible !important;
+.modal-dialog.active {
+  visibility: visible;
   opacity: 1;
 }
 
