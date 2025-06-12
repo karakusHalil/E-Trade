@@ -1,6 +1,6 @@
-const express = required("express");
-const cors = required("cors");
-const mongoose = required("mongoose");
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
 
 const app = express();
 
