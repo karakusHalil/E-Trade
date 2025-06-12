@@ -59,13 +59,22 @@ const Sliders = () => {
             </button>
           </div>
           <div className="slider-dots">
-            <button className="slider-dot active" onclick="currentSlide(1)">
+            <button
+              className={`slider-dot ${selectedImage === 0 ? "active" : ""}`}
+              onClick={() => setSelectedImage(0)}
+            >
               <span />
             </button>
-            <button className="slider-dot" onclick="currentSlide(2)">
+            <button
+              className={`slider-dot ${selectedImage === 1 ? "active" : ""}`}
+              onClick={() => setSelectedImage(1)}
+            >
               <span />
             </button>
-            <button className="slider-dot" onclick="currentSlide(3)">
+            <button
+              className={`slider-dot ${selectedImage === 2 ? "active" : ""}`}
+              onClick={() => setSelectedImage(2)}
+            >
               <span />
             </button>
           </div>
