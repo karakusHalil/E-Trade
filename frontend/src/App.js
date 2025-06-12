@@ -7,11 +7,13 @@ import ShoppingCart from "./pages/ShoppingCart";
 import SingleBlog from "./pages/SingleBlog";
 import Shop from "./pages/Shop";
 import Home from "./pages/Home";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<BlogList />} />
