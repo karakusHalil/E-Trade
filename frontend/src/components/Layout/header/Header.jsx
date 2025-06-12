@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link, NavLink } from "react-router-dom";
 import "./Header.css";
 
 const Header = ({ setIsSearchVisible }) => {
@@ -21,9 +22,9 @@ const Header = ({ setIsSearchVisible }) => {
                 <i className="bi bi-list" id="btn-menu" />
               </div>
               <div className="header-left">
-                <a href="index.html" className="logo">
+                <Link to="/" className="logo">
                   LOGO
-                </a>
+                </Link>
               </div>
               <div className="header-center" id="sidebar">
                 <nav className="navigation">

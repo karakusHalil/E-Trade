@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import MainLayout from "./components/Layouts/MainLayout.jsx";
 import App from "./App";
@@ -8,9 +9,11 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <MainLayout>
-      <App />
-    </MainLayout>
+    <BrowserRouter>
+      <MainLayout>
+        <App />
+      </MainLayout>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
