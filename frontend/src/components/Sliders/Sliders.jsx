@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sliders.css";
 import SliderItem from "./SliderItem";
 
 const Sliders = () => {
+  const [selectedImage, setSelectedImage] = useState(0);
+
+  const rightArrow = () => {
+    setSelectedImage((prev) => (prev + 1) % 3);
+  };
+
+  const leftArrow = () => {
+    setSelectedImage((prev) => (prev - 1 + 3) % 3);
+  };
   return (
     <>
       <section className="slider">
         <div className="slider-elements">
-          <SliderItem />
+          {selectedImage === 0 && (
+            <SliderItem imageUrl="img/slider/slider1.jpg" />
+          )}
+          {selectedImage === 1 && (
+            <SliderItem imageUrl="img/slider/slider2.jpg" />
+          )}
+          {selectedImage === 2 && (
+            <SliderItem imageUrl="img/slider/slider3.jpg" />
+          )}
+
           {/* <div className="slider-item fade">
             <div className="slider-image">
               <img src="img/slider/slider2.jpg" className="img-fluid" alt />
@@ -33,10 +51,10 @@ const Sliders = () => {
             </div>
           </div> */}
           <div className="slider-buttons">
-            <button onclick="plusSlide(-1)">
+            <button onClick={leftArrow}>
               <i className="bi bi-chevron-left" />
             </button>
-            <button onclick="plusSlide(1)">
+            <button onClick={rightArrow}>
               <i className="bi bi-chevron-right" />
             </button>
           </div>
