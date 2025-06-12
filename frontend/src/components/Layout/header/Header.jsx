@@ -30,10 +30,10 @@ const Header = ({ setIsSearchVisible }) => {
                 <nav className="navigation">
                   <ul className="menu-list">
                     <li className="menu-list-item">
-                      <a href="index.html" className="menu-link active">
+                      <NavLink to="/" className="menu-link">
                         Home
                         <i className="bi bi-chevron-down" />
-                      </a>
+                      </NavLink>
                       <div className="menu-dropdown-wrapper">
                         <ul className="menu-dropdown-content">
                           <li>
@@ -67,10 +67,10 @@ const Header = ({ setIsSearchVisible }) => {
                       </div>
                     </li>
                     <li className="menu-list-item megamenu-wrapper">
-                      <a href="shop.html" className="menu-link">
+                      <NavLink to="/shop" className="menu-link">
                         Shop
                         <i className="bi bi-chevron-down" />
-                      </a>
+                      </NavLink>
                       <div className="menu-dropdown-wrapper">
                         <div className="menu-dropdown-megamenu">
                           <div className="megamenu-links">
@@ -174,14 +174,14 @@ const Header = ({ setIsSearchVisible }) => {
                       </div>
                     </li>
                     <li className="menu-list-item">
-                      <a href="blog.html" className="menu-link">
+                      <NavLink to="/blog" className="menu-link">
                         Blog
-                      </a>
+                      </NavLink>
                     </li>
                     <li className="menu-list-item">
-                      <a href="contact.html" className="menu-link">
+                      <NavLink to="/contact" className="menu-link">
                         Contact
-                      </a>
+                      </NavLink>
                     </li>
                   </ul>
                 </nav>
@@ -189,9 +189,9 @@ const Header = ({ setIsSearchVisible }) => {
               </div>
               <div className="header-right">
                 <div className="header-right-links">
-                  <a href="account.html" className="header-account">
+                  <Link to="/auth" className="header-account">
                     <i className="bi bi-person" />
-                  </a>
+                  </Link>
                   <button
                     className="search-button"
                     onClick={() => setIsSearchVisible(true)}
@@ -202,10 +202,10 @@ const Header = ({ setIsSearchVisible }) => {
                     <i className="bi bi-heart" />
                   </a>
                   <div className="header-cart">
-                    <a href="cart.html" className="header-cart-link">
+                    <Link to="/cart" className="header-cart-link">
                       <i className="bi bi-bag" />
                       <span className="header-cart-count">0</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
