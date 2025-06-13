@@ -23,5 +23,5 @@ app.use(cors());
 
 app.listen(port, () => {
   connect();
-  console.log(`Sunucu ${port} üzerinden çalışıyor...`)
+  console.log(`Sunucu ${port} üzerinden çalışıyor...`);
 });
