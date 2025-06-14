@@ -1,6 +1,4 @@
 const Product = require("../models/Product");
-const { route } = require("../routes");
-const { getById, update } = require("./CategoryRepository");
 
 const ProductRepository = {
   getAll: () => Product.find(),
@@ -14,4 +12,4 @@ const ProductRepository = {
   delete: (productId) => Product.findByIdAndDelete(productId),
 };
 
-module.exports = route;
+module.exports = ProductRepository;

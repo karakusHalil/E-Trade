@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const mainRoute = require("./routes");
 
 const app = express();
 
@@ -20,6 +21,7 @@ const connect = async () => {
 
 app.use(express.json());
 app.use(cors());
+app.use("/api", mainRoute);
 
 app.listen(port, () => {
   connect();
