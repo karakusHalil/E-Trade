@@ -1,4 +1,3 @@
-const { getAll } = require("../repositories/CategoryRepository");
 const ProductRepository = require("../repositories/ProductRepository");
 
 //CREATE PRODUCT START

@@ -5,8 +5,11 @@ const UserRepository = {
   getById: (userId) => User.findById(userId),
   create: (userData) => User.create(userData),
   update: (userId, updateData) =>
-    User.findByIdAndUpdate(id, updateData, { new: true, runValidators: true }),
-  delete: (userId) => User.findByIdAndDelete(id),
+    User.findByIdAndUpdate(userId, updateData, {
+      new: true,
+      runValidators: true,
+    }),
+  delete: (userId) => User.findByIdAndDelete(userId),
 };
 
 module.exports = UserRepository;
