@@ -1,97 +1,95 @@
-const express = require("express");
-const router = express.Router();
-const Product = require("../models/Product");
-
-
+const { getAll } = require("../repositories/CategoryRepository");
+const ProductRepository = require("../repositories/ProductRepository");
 
 //CREATE PRODUCT START
-router.post("/", async (req, res) => {
+const createProduct = async (req, res) => {
   try {
-    const product = new Product(req.body);
-    await product.save();
-    res.status(201).json(product);
+    const { name, images, price, description, colors, sizes, stockCode } =
+      req.body;
+    if (!name || !stockCode) {
+      return res.status(400).json({ error: "Name ve StockCode zorunludur." });
+    }
+    const newProduct = await ProductRepository.create({
+      name,
+      images,
+      price,
+      description,
+      colors,
+      sizes,
+      stockCode,
+    });
+    res.status(201).json(newProduct);
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
   }
-});
+};
 //CREATE PRODUCT END
 
-
-
-
-
 //GET ALL PRODUCTS START
-router.get("/", async (req, res) => {
+const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await ProductRepository.getAll();
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
   }
-});
+};
 //GET ALL PRODUCTS END
 
-
-
-
-
 //GET PRODUCT BY ID START
-router.get("/:productId", async (req, res) => {
+const getProductById = async (req, res) => {
   try {
     const productId = req.params.productId;
-    const product = await Product.findById(productId);
+    const product = await ProductRepository.getById(productId);
     if (!product) {
-      res.status(404).json({ error: "Ürün Bulunamadı !" });
+      return res.status(404).json({ error: "Ürün Bulunamadı !" });
     }
     res.status(200).json(product);
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
   }
-});
+};
 //GET PRODUCT BY ID END
 
-
-
 //PUT PRODUCT START
-router.put("/:productId", async (req, res) => {
+const updateProduct = async (req, res) => {
   try {
     const productId = req.params.productId;
     const updateProduct = req.body;
 
-    const product = await Product.findById(productId);
-    if (!product) {
-      res.status(404).json({ error: "Ürün Bulunamadı !" });
-    }
-    const updatedProduct = await Product.findByIdAndUpdate(
+    const updatedProduct = await ProductRepository.update(
       productId,
-      updateProduct,
-      { new: true }
+      updateProduct
     );
+    if (!updatedProduct) {
+      return res.status(404).json({ error: "Ürün bulunamadı!" });
+    }
     res.status(200).json(updatedProduct);
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
   }
-});
+};
 //PUT PRODUCT END
 
-
-
-
 //DELETE PRODUCT START
-router.delete("/:productId", async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.productId;
-    const deletedProduct = await Product.findByIdAndDelete(productId);
+    const deletedProduct = await ProductRepository.delete(productId);
     if (!deletedProduct) {
-      res.status(404).json({ error: "Ürün Bulunamadı !" });
+      return res.status(404).json({ error: "Ürün Bulunamadı !" });
     }
     res.status(200).json(deletedProduct);
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
   }
-});
+};
 //DELETE PRODUCT END
 
-
-
-module.exports = router;
+module.exports = {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+};
