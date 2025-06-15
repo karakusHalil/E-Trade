@@ -34,7 +34,7 @@ const getAllCategories = async (req, res) => {
 const getCategoryById = async (req, res) => {
   try {
     const categoryId = req.params.categoryId;
-    const category = CategoryRepository.getById(categoryId);
+    const category = await CategoryRepository.getById(categoryId);
     if (!category) {
       return res.status(404).json({ error: "Kategori Bulunamadı !" });
     }
@@ -51,10 +51,10 @@ const getCategoryById = async (req, res) => {
 const updateCategory = async (req, res) => {
   try {
     const categoryId = req.params.categoryId;
-    const updateCategory = req.body;
+    const updateData = req.body;
     const updatedCategory = await CategoryRepository.update(
       categoryId,
-      updateCategory
+      updateData
     );
     if (!updatedCategory) {
       return res.status(404).json({ error: "Kategori Bulunamadı !" });

@@ -3,8 +3,18 @@ const ProductRepository = require("../repositories/ProductRepository");
 //CREATE PRODUCT START
 const createProduct = async (req, res) => {
   try {
-    const { name, images, price, description, colors, sizes, stockCode } =
-      req.body;
+    const {
+      name,
+      images,
+      price,
+      description,
+      colors,
+      sizes,
+      stockCode,
+      discount,
+      isActive,
+      category,
+    } = req.body;
     if (!name || !stockCode) {
       return res.status(400).json({ error: "Name ve StockCode zorunludur." });
     }
@@ -16,6 +26,9 @@ const createProduct = async (req, res) => {
       colors,
       sizes,
       stockCode,
+      discount,
+      isActive,
+      category,
     });
     res.status(201).json(newProduct);
   } catch (error) {
@@ -54,11 +67,11 @@ const getProductById = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const productId = req.params.productId;
-    const updateProduct = req.body;
+    const updateData = req.body;
 
     const updatedProduct = await ProductRepository.update(
       productId,
-      updateProduct
+      updateData
     );
     if (!updatedProduct) {
       return res.status(404).json({ error: "Ürün bulunamadı!" });

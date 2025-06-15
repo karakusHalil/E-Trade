@@ -1,9 +1,10 @@
+const { update } = require("../repositories/CategoryRepository");
 const UserRepository = require("../repositories/UserRepository");
 
 //CREATE USER START
 const createUser = async (req, res) => {
   try {
-    const { username, email, password, role } = req.body;
+    const { username, email, password } = req.body;
     if (!username || !email || !password) {
       return res
         .status(400)
@@ -58,8 +59,8 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const updateUser = req.body;
-    const updatedUser = await UserRepository.update(userId, updateUser);
+    const updateData = req.body;
+    const updatedUser = await UserRepository.update(userId, updateData);
     if (!updatedUser) {
       return res.status(404).json({ error: "Kullanıcı bulunamadı!" });
     }
