@@ -1,5 +1,35 @@
 const AuthRepository = require("../repositories/AuthRepository");
 
+//REGISTER USER START
+const register = async (req, res) => {
+  try {
+    const { username, email, password, role } = req.body;
+    if (!username || !email || !password) {
+      return res
+        .status(400)
+        .json({ error: "Kullanıcı adı, email ve şifre zorunludur!" });
+    }
+    //email control
+    const existingUser = await AuthRepository.getByEmail(email);
+    if (existingUser) {
+      return res.status(400).json({ error: "Email zaten kullanılıyor !" });
+    }
+    const newUser = await AuthRepository.createUser({
+      username,
+      email,
+      password,
+      role,
+    });
+    res
+      .status(201)
+      .json({ message: "Kullanıcı Başarıyla oluşturuldu", user: newUser });
+  } catch (error) {
+    res.status(500).json({ error: "Sunucu Hatası !" });
+  }
+};
+
+//REGISTER USER END
+
 //LOGIN USER START
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -26,4 +56,5 @@ const login = async (req, res) => {
 
 module.exports = {
   login,
+  register,
 };
