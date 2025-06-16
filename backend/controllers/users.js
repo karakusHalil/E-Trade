@@ -39,7 +39,12 @@ const loginUser = async (req, res) => {
     if (user.password !== password) {
       return res.status(401).json({ error: "Yanlış Şifre Girdiniz !" });
     }
-    res.status(200).json({ message: "Giriş Başarılı", user });
+    res.status(200).json({
+      id: user._id,
+      username: user.username,
+      password: user.password,
+      role: user.role,
+    });
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
   }
@@ -114,5 +119,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  loginUser
+  loginUser,
 };
