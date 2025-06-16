@@ -1,5 +1,8 @@
 const AuthRepository = require("../repositories/AuthRepository");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const JWT_SECRET = process.env.JWT_SECRET || "testDegeri";
 
 //REGISTER USER START
 const register = async (req, res) => {
@@ -52,13 +55,20 @@ const login = async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ error: "Yanlış Şifre !" });
     }
+
+    const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
     res.status(200).json({
+      message: "Giriş Başarılı",
+      token,
       id: user._id,
       username: user.username,
-      password: user.password,
       role: user.role,
     });
   } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({ error: "Sunucu Hatası !" });
   }
 };

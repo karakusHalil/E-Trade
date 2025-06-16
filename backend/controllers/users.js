@@ -1,18 +1,21 @@
 const UserRepository = require("../repositories/UserRepository");
-
+const bcrypt = require("bcrypt");
 //CREATE USER START
 const createUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, role } = req.body;
     if (!username || !email || !password) {
       return res
         .status(400)
         .json({ error: "Kullanıcı adı, email ve şifre zorunludur!" });
     }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser = await UserRepository.create({
       username,
       email,
-      password,
+      password: hashedPassword,
       role,
     });
     res.status(201).json(newUser);
@@ -25,8 +28,6 @@ const createUser = async (req, res) => {
   }
 };
 //CREATE USER END
-
-
 
 //GET ALL USERS START
 const getAllUsers = async (req, res) => {
@@ -60,7 +61,11 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const userId = req.params.userId;
-    const updateData = req.body;
+    const updateData = { ...req.body };
+    console.log(updateData);
+    if (updateData.password) {
+      updateData.password = await bcrypt.hash(updateData.password, 10);
+    }
     const updatedUser = await UserRepository.update(userId, updateData);
     if (!updatedUser) {
       return res.status(404).json({ error: "Kullanıcı bulunamadı!" });
