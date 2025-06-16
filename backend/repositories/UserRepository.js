@@ -10,7 +10,6 @@ const UserRepository = {
       runValidators: true,
     }),
   delete: (userId) => User.findByIdAndDelete(userId),
-  getByEmail: (email) => User.findOne({ email }),
 };
 
 module.exports = UserRepository;

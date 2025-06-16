@@ -1,5 +1,3 @@
-const { json } = require("express");
-const { update } = require("../repositories/CategoryRepository");
 const UserRepository = require("../repositories/UserRepository");
 
 //CREATE USER START
@@ -28,29 +26,7 @@ const createUser = async (req, res) => {
 };
 //CREATE USER END
 
-//LOGIN USER START
-const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const user = await UserRepository.getByEmail(email);
-    if (!user) {
-      return res.status(401).json({ error: "Email Bulunamadı !" });
-    }
-    if (user.password !== password) {
-      return res.status(401).json({ error: "Yanlış Şifre Girdiniz !" });
-    }
-    res.status(200).json({
-      id: user._id,
-      username: user.username,
-      password: user.password,
-      role: user.role,
-    });
-  } catch (error) {
-    res.status(500).json({ error: "Sunucu Hatası !" });
-  }
-};
 
-//LOGIN USER END
 
 //GET ALL USERS START
 const getAllUsers = async (req, res) => {
@@ -119,5 +95,4 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  loginUser,
 };
