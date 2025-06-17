@@ -23,6 +23,9 @@ function App() {
         <Route path="/auth" element={<Account />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/blog/:id" element={<SingleBlog />} />
+        <Route path="/admin">
+          <Route index />
+        </Route>
       </Routes>
     </div>
   );
