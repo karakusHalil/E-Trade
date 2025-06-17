@@ -1,18 +1,18 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import MainLayout from "./components/Layouts/MainLayout.jsx";
 import App from "./App";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { Layout } from "./Layouts/Layout.jsx";
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <MainLayout>
+      <Layout>
         <App />
-      </MainLayout>
+      </Layout>
     </BrowserRouter>
   </React.StrictMode>
 );
