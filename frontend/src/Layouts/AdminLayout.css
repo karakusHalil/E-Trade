@@ -1,0 +1,75 @@
+/* Layout genel */
+.admin-layout {
+  background-color: #f4f6f8;
+  min-height: 100vh;
+}
+
+.ant-layout-sider {
+  background-color: #111827 !important;
+  width: 20% !important;
+  min-width: 320px;    /* Biraz daha geniş */
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.ant-menu {
+  background-color: transparent !important;
+  width: 100%;
+  font-size: 20px;       /* Menü font büyüklüğü artırıldı */
+  border-inline-end: none;
+}
+
+.ant-menu-item {
+  margin: 24px 20px;     /* Menü öğeleri arası boşluk artırıldı */
+  border-radius: 12px;
+  height: 60px;          /* Menü item yüksekliği büyütüldü */
+  display: flex;
+  align-items: center;
+  font-weight: 700;      /* Yazı kalınlığı artırıldı */
+  font-size: 15px;       /* Font büyüklüğü artırıldı */
+  transition: background-color 0.3s;
+  padding-left: 20px;    /* Menü metnini biraz içeri aldık */
+}
+
+.ant-menu-item:nth-child(1) {
+  height: 60px; /* istediğin yükseklik */
+}
+
+.ant-menu-item:hover {
+  background-color: #2563eb !important;
+  color: #fff !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #1d4ed8 !important;
+  color: #fff !important;
+  height: 60px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Header */
+.ant-layout-header {
+  background-color: #ffffff;
+  color: #111;
+  font-size: 18px;
+  font-weight: 600; 
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  height: 64px;
+}
+
+/* Content */
+.ant-layout-content {
+  background: hsl(0, 0%, 100%);
+  margin-left: 2px 4px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+/* Footer */
+.ant-layout-footer {
+  background: hsl(0, 0%, 95%);
+  
+}
