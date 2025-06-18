@@ -17,6 +17,7 @@
   width: 100%;
   font-size: 20px;       /* Menü font büyüklüğü artırıldı */
   border-inline-end: none;
+  user-select: none;
 }
 
 .ant-menu-item {
@@ -59,6 +60,7 @@
   padding: 0 32px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   height: 64px;
+  user-select: none;
 }
 
 /* Content */
@@ -71,5 +73,5 @@
 /* Footer */
 .ant-layout-footer {
   background: hsl(0, 0%, 95%);
-  
+  user-select: none;
 }
