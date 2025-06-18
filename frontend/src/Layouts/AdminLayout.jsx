@@ -9,7 +9,7 @@ import {
   PlusCircleOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./AdminLayout.css";
 
@@ -17,6 +17,23 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const getTitle = () => {
+    const path = location.pathname;
+    if (path.includes("/categories/list")) return "Category List";
+    if (path.includes("/categories/create")) return "Add Category";
+    if (path.includes("/categories/update")) return "Update Category";
+    if (path.includes("/products/list")) return "Product List";
+    if (path.includes("/products/create")) return "Add Product";
+    if (path.includes("/users/list")) return "User List";
+    if (path.includes("/users/create")) return "User Add";
+    if (path.includes("/coupons/list")) return "Coupon List";
+    if (path.includes("/coupons/create")) return "Coupon Add";
+    if (path === "/admin") return "Dashboard";
+    return "";
+  };
+
   const items = [
     {
       key: "1",
@@ -176,7 +193,7 @@ const AdminLayout = ({ children }) => {
             />
           </Sider>
           <Layout>
-            <Header>Header</Header>
+            <Header>{getTitle()}</Header>
             <Content>{children}</Content>
             <Footer>Footer</Footer>
           </Layout>
