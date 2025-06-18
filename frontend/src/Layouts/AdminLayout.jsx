@@ -10,11 +10,12 @@ import {
   MinusCircleOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./AdminLayout.css";
 
 const { Header, Footer, Sider, Content } = Layout;
 
-const AdminLayout = () => {
+const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
   const items = [
     {
@@ -22,7 +23,7 @@ const AdminLayout = () => {
       icon: <DashboardOutlined />,
       label: "Dashboard",
       path: "/admin",
-      onclick: () => {
+      onClick: () => {
         navigate("/admin");
       },
     },
@@ -30,14 +31,14 @@ const AdminLayout = () => {
       key: "2",
       icon: <AppstoreOutlined />,
       label: "Category",
-      path: "/admin/category",
+      path: "/admin/categories",
       children: [
         {
           key: "2-1",
           icon: <OrderedListOutlined />,
           label: "Category List",
-          path: "/admin/category/list",
-          onclick: () => {
+          path: "/admin/categories/list",
+          onClick: () => {
             navigate("/admin/categories/list");
           },
         },
@@ -46,7 +47,7 @@ const AdminLayout = () => {
           icon: <PlusCircleOutlined />,
           label: "Category Add",
           path: "/admin/categories/create",
-          onclick: () => {
+          onClick: () => {
             navigate("/admin/categories/create");
           },
         },
@@ -81,7 +82,7 @@ const AdminLayout = () => {
           icon: <OrderedListOutlined />,
           label: "Product List",
           path: "/admin/products/list",
-          onclick: () => {
+          onClick: () => {
             navigate("/admin/products/list");
           },
         },
@@ -90,7 +91,7 @@ const AdminLayout = () => {
           icon: <PlusCircleOutlined />,
           label: "Product Add",
           path: "/admin/products/create",
-          onclick: () => {
+          onClick: () => {
             navigate("/admin/products/create");
           },
         },
@@ -125,7 +126,7 @@ const AdminLayout = () => {
           icon: <OrderedListOutlined />,
           label: "User List",
           path: "/admin/users/list",
-          onclick: () => {
+          onClick: () => {
             navigate("/admin/users/list");
           },
         },
@@ -134,7 +135,7 @@ const AdminLayout = () => {
           icon: <PlusCircleOutlined />,
           label: "User Add",
           path: "/admin/users/create",
-          onclick: () => {
+          onClick: () => {
             navigate("/admin/users/create");
           },
         },
@@ -176,7 +177,7 @@ const AdminLayout = () => {
           </Sider>
           <Layout>
             <Header>Header</Header>
-            <Content>Content</Content>
+            <Content>{children}</Content>
             <Footer>Footer</Footer>
           </Layout>
         </Layout>
@@ -186,3 +187,7 @@ const AdminLayout = () => {
 };
 
 export default AdminLayout;
+
+AdminLayout.propTypes = {
+  children: PropTypes.node,
+};
