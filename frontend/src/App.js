@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import "./App.css";
 import CreateCategory from "./pages/Admin/Category/CreateCategory";
+import Dashboard from "./pages/Admin/Dashboard";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/blog/:id" element={<SingleBlog />} />
         <Route path="/admin/*">
+          <Route index element={<Dashboard />} />
           <Route path="categories/create" element={<CreateCategory />} />
         </Route>
       </Routes>
