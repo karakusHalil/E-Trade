@@ -1,0 +1,52 @@
+/* Tablonun dış kutusu */
+.ant-table-wrapper {
+  background-color: #ffffff;
+  padding: 32px;
+  margin: 5px auto;         /* 🔧 Sağa sola otomatik ortala, üst-alt 5px */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: calc(100% - 10px); /* 🔧 Sağ-sol 5px boşluk için tam çözüm */
+  max-width: 1200px;
+}
+
+
+/* Tablo başlığı */
+.ant-table-thead > tr > th {
+  background-color: #f9fafb;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f2937;
+  padding: 16px;
+}
+
+/* Tablo hücreleri */
+.ant-table-tbody > tr > td {
+  padding: 16px;
+  font-size: 15px;
+  color: #374151;
+  vertical-align: middle;
+}
+
+/* Görsel (Image) kolonu için görsel boyutu */
+.ant-table-tbody img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Butonlar */
+.ant-table-tbody .ant-btn {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 6px 14px;
+}
+
+.ant-table-tbody .ant-btn:hover {
+  opacity: 0.85;
+}
+
+/* Responsive olsun diye taşmaları engelle */
+.ant-table {
+  overflow-x: auto;
+}
