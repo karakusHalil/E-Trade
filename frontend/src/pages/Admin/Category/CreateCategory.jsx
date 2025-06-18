@@ -32,7 +32,7 @@ const CreateCategory = () => {
 
         <Form.Item label={null}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Add
           </Button>
         </Form.Item>
       </Form>

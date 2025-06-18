@@ -35,6 +35,33 @@ const AdminLayout = ({ children }) => {
     if (path === "/admin") return "Dashboard";
     return "";
   };
+  const selectedMenuKey = () => {
+    const path = location.pathname;
+
+    if (path.includes("/categories/list")) return "2-1";
+    if (path.includes("/categories/create")) return "2-2";
+    if (path.includes("/categories/update")) return "2-3";
+    // if (path.includes("/categories/delete")) return "2-4";
+
+    if (path.includes("/products/list")) return "3-1";
+    if (path.includes("/products/create")) return "3-2";
+    // if (path.includes("/products/update")) return "3-3";
+    // if (path.includes("/products/delete")) return "3-4";
+
+    if (path.includes("/users/list")) return "4-1";
+    if (path.includes("/users/create")) return "4-2";
+    // if (path.includes("/users/update")) return "4-3";
+    // if (path.includes("/users/delete")) return "4-4";
+
+    if (path.includes("/blogs/list")) return "5-1";
+    if (path.includes("/blogs/create")) return "5-2";
+    // if (path.includes("/blogs/update")) return "5-3";
+    // if (path.includes("/blogs/delete")) return "5-4";
+
+    if (path === "/admin") return "1"; // dashboard
+
+    return "1";
+  };
 
   const items = [
     {
@@ -205,15 +232,15 @@ const AdminLayout = ({ children }) => {
       ],
     },
   ];
-
+  console.log(selectedMenuKey);
   return (
     <>
       <div className="admin-layout">
         <Layout style={{ minHeight: "100vh" }}>
           <Sider width="20%">
             <Menu
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
+              selectedKeys={[selectedMenuKey()]}
+              defaultOpenKeys={["1"]}
               mode="inline"
               theme="dark"
               // inlineCollapsed={collapsed}
