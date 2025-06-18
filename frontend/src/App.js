@@ -9,6 +9,7 @@ import Shop from "./pages/Shop";
 import Home from "./pages/Home";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import "./App.css";
+import CreateCategory from "./pages/Admin/Category/CreateCategory";
 
 function App() {
   return (
@@ -23,8 +24,8 @@ function App() {
         <Route path="/auth" element={<Account />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/blog/:id" element={<SingleBlog />} />
-        <Route path="/admin">
-          <Route index />
+        <Route path="/admin/*">
+          <Route path="categories/create" element={<CreateCategory />} />
         </Route>
       </Routes>
     </div>
