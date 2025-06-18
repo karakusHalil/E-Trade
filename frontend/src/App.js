@@ -8,7 +8,6 @@ import SingleBlog from "./pages/SingleBlog";
 import Shop from "./pages/Shop";
 import Home from "./pages/Home";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import "./App.css";
 import CreateCategory from "./pages/Admin/Category/CreateCategory";
 import Dashboard from "./pages/Admin/Dashboard";
 import CategoryList from "./pages/Admin/Category/CategoryList";
@@ -16,6 +15,10 @@ import UpdateCategory from "./pages/Admin/Category/UpdateCategory";
 import ProductList from "./pages/Admin/Product/ProductList";
 import CreateProduct from "./pages/Admin/Product/CreateProduct";
 import UpdateProduct from "./pages/Admin/Product/UpdateProduct";
+import CreateBlog from "./pages/Admin/Blogs/CreateBlog";
+import UpdateBlog from "./pages/Admin/Blogs/UpdateBlog";
+import BlogAdminList from "./pages/Admin/Blogs/BlogAdminList";
+import "./App.css";
 
 function App() {
   return (
@@ -39,6 +42,9 @@ function App() {
           <Route path="products" element={<ProductList />} />
           <Route path="products/create" element={<CreateProduct />} />
           <Route path="products/update" element={<UpdateProduct />} />
+          <Route path="blogs" element={<BlogAdminList />} />
+          <Route path="blogs/create" element={<CreateBlog />} />
+          <Route path="blogs/update" element={<UpdateBlog />} />
         </Route>
       </Routes>
     </div>

@@ -7,6 +7,7 @@ import {
   ShoppingOutlined,
   UserOutlined,
   PlusCircleOutlined,
+  ReadOutlined,
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -25,10 +26,12 @@ const AdminLayout = ({ children }) => {
     if (path.includes("/categories/update")) return "Update Category";
     if (path.includes("/products/list")) return "Product List";
     if (path.includes("/products/create")) return "Add Product";
-    if (path.includes("/products/update")) return "Update Product";
+    // if (path.includes("/products/update")) return "Update Product";
     if (path.includes("/users/list")) return "User List";
     if (path.includes("/users/create")) return "Add User";
-    if (path.includes("/users/update")) return "Update User";
+    // if (path.includes("/users/update")) return "Update User";
+    if (path.includes("/blogs/list")) return "Blog List";
+    if (path.includes("/blogs/create")) return "Add Blog";
     if (path === "/admin") return "Dashboard";
     return "";
   };
@@ -111,15 +114,15 @@ const AdminLayout = ({ children }) => {
             navigate("/admin/products/create");
           },
         },
-        {
-          key: "3-3",
-          icon: <ReloadOutlined />,
-          label: "Update Product",
-          path: "/admin/products/update",
-          onClick: () => {
-            navigate("/admin/products/update");
-          },
-        },
+        // {
+        //   key: "3-3",
+        //   icon: <ReloadOutlined />,
+        //   label: "Update Product",
+        //   path: "/admin/products/update",
+        //   onClick: () => {
+        //     navigate("/admin/products/update");
+        //   },
+        // },
         // {
         //   key: "3-4",
         //   icon: <MinusCircleOutlined />,
@@ -155,15 +158,15 @@ const AdminLayout = ({ children }) => {
             navigate("/admin/users/create");
           },
         },
-        {
-          key: "4-3",
-          icon: <ReloadOutlined />,
-          label: "Update User",
-          path: "/admin/users/update",
-          onClick: () => {
-            navigate("/admin/users/update");
-          },
-        },
+        // {
+        //   key: "4-3",
+        //   icon: <ReloadOutlined />,
+        //   label: "Update User",
+        //   path: "/admin/users/update",
+        //   onClick: () => {
+        //     navigate("/admin/users/update");
+        //   },
+        // },
         // {
         //   key: "4-4",
         //   icon: <MinusCircleOutlined />,
@@ -173,6 +176,32 @@ const AdminLayout = ({ children }) => {
         //     navigate("/admin/users/delete");
         //   },
         // },
+      ],
+    },
+    {
+      key: "5",
+      icon: <ReadOutlined />,
+      label: "Blog",
+      path: "/admin/blog",
+      children: [
+        {
+          key: "4-1",
+          icon: <OrderedListOutlined />,
+          label: "Blog List",
+          path: "/admin/blogs/list",
+          onClick: () => {
+            navigate("/admin/blogs/list");
+          },
+        },
+        {
+          key: "4-2",
+          icon: <PlusCircleOutlined />,
+          label: "Blog Add",
+          path: "/admin/blogs/create",
+          onClick: () => {
+            navigate("/admin/blogs/create");
+          },
+        },
       ],
     },
   ];
