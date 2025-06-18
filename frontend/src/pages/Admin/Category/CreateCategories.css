@@ -8,6 +8,7 @@
   width: 100%;
   max-width: 800px;
   min-height: 400px;
+  max-height: 580px;
 }
 
 /* Label (etiketler) */
@@ -24,6 +25,7 @@
   border-radius: 8px;
   border: 1px solid #d1d5db; /* Tailwind gray-300 */
   font-size: 15px;
+  max-height: 400px;
 }
 
 /* Input focus olduğunda */
