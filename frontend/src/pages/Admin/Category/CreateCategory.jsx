@@ -13,14 +13,20 @@ const CreateCategory = () => {
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
+          label="Category Name"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[
+            { required: true, message: "Please input your Category Name!" },
+          ]}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item name={["user", "introduction"]} label="Introduction">
+        <Form.Item
+          name="img"
+          label="Image Url"
+          rules={[{ required: true, message: "Please input your Image Url!" }]}
+        >
           <Input.TextArea />
         </Form.Item>
 
