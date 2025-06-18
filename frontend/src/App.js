@@ -11,6 +11,11 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import "./App.css";
 import CreateCategory from "./pages/Admin/Category/CreateCategory";
 import Dashboard from "./pages/Admin/Dashboard";
+import CategoryList from "./pages/Admin/Category/CategoryList";
+import UpdateCategory from "./pages/Admin/Category/UpdateCategory";
+import ProductList from "./pages/Admin/Product/ProductList";
+import CreateProduct from "./pages/Admin/Product/CreateProduct";
+import UpdateProduct from "./pages/Admin/Product/UpdateProduct";
 
 function App() {
   return (
@@ -27,7 +32,13 @@ function App() {
         <Route path="/blog/:id" element={<SingleBlog />} />
         <Route path="/admin/*">
           <Route index element={<Dashboard />} />
+          <Route index element={<Dashboard />} />
           <Route path="categories/create" element={<CreateCategory />} />
+          <Route path="categories/list" element={<CategoryList />} />
+          <Route path="categories/update" element={<UpdateCategory />} />
+          <Route path="products" element={<ProductList />} />
+          <Route path="products/create" element={<CreateProduct />} />
+          <Route path="products/update" element={<UpdateProduct />} />
         </Route>
       </Routes>
     </div>

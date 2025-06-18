@@ -7,7 +7,6 @@ import {
   ShoppingOutlined,
   UserOutlined,
   PlusCircleOutlined,
-  MinusCircleOutlined,
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -26,10 +25,10 @@ const AdminLayout = ({ children }) => {
     if (path.includes("/categories/update")) return "Update Category";
     if (path.includes("/products/list")) return "Product List";
     if (path.includes("/products/create")) return "Add Product";
+    if (path.includes("/products/update")) return "Update Product";
     if (path.includes("/users/list")) return "User List";
-    if (path.includes("/users/create")) return "User Add";
-    if (path.includes("/coupons/list")) return "Coupon List";
-    if (path.includes("/coupons/create")) return "Coupon Add";
+    if (path.includes("/users/create")) return "Add User";
+    if (path.includes("/users/update")) return "Update User";
     if (path === "/admin") return "Dashboard";
     return "";
   };
@@ -77,15 +76,15 @@ const AdminLayout = ({ children }) => {
             navigate("/admin/categories/update");
           },
         },
-        {
-          key: "2-4",
-          icon: <MinusCircleOutlined />,
-          label: "Delete Category",
-          path: "/admin/categories/delete",
-          onClick: () => {
-            navigate("/admin/categories/delete");
-          },
-        },
+        // {
+        //   key: "2-4",
+        //   icon: <MinusCircleOutlined />,
+        //   label: "Delete Category",
+        //   path: "/admin/categories/delete",
+        //   onClick: () => {
+        //     navigate("/admin/categories/delete");
+        //   },
+        // },
       ],
     },
     {
@@ -121,15 +120,15 @@ const AdminLayout = ({ children }) => {
             navigate("/admin/products/update");
           },
         },
-        {
-          key: "3-4",
-          icon: <MinusCircleOutlined />,
-          label: "Delete Product",
-          path: "/admin/products/delete",
-          onClick: () => {
-            navigate("/admin/products/delete");
-          },
-        },
+        // {
+        //   key: "3-4",
+        //   icon: <MinusCircleOutlined />,
+        //   label: "Delete Product",
+        //   path: "/admin/products/delete",
+        //   onClick: () => {
+        //     navigate("/admin/products/delete");
+        //   },
+        // },
       ],
     },
     {
@@ -165,15 +164,15 @@ const AdminLayout = ({ children }) => {
             navigate("/admin/users/update");
           },
         },
-        {
-          key: "4-4",
-          icon: <MinusCircleOutlined />,
-          label: "Delete User",
-          path: "/admin/users/delete",
-          onClick: () => {
-            navigate("/admin/users/delete");
-          },
-        },
+        // {
+        //   key: "4-4",
+        //   icon: <MinusCircleOutlined />,
+        //   label: "Delete User",
+        //   path: "/admin/users/delete",
+        //   onClick: () => {
+        //     navigate("/admin/users/delete");
+        //   },
+        // },
       ],
     },
   ];
