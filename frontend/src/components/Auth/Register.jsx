@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -6,6 +7,8 @@ const Register = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +28,7 @@ const Register = () => {
       if (response.ok) {
         const result = await response.json();
         localStorage.setItem("user", JSON.stringify(result));
+        navigate("/");
         // console.log(result);
         //form clear
         setFormData({
