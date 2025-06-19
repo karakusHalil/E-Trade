@@ -24,6 +24,7 @@ const Register = () => {
       console.log(response);
       if (response.ok) {
         const result = await response.json();
+        localStorage.setItem("user", JSON.stringify(result));
         // console.log(result);
         //form clear
         setFormData({
