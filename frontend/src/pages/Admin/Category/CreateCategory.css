@@ -1,10 +1,10 @@
-.category-update-wrapper {
+.category-form-wrapper {
   display: flex;
   justify-content: center;
-  padding: 48px 16px;
+  padding: 48px 16px; /* Üstten boşluk ve kenarlardan biraz iç boşluk */
 }
 
-.category-update-wrapper form {
+.category-form-wrapper form {
   width: 100%;
   max-width: 800px;
   background-color: #fff;
@@ -13,7 +13,7 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-.category-update-wrapper textarea {
+.category-form-wrapper textarea {
   max-height: 180px;
   overflow-y: auto;
 }

@@ -26,7 +26,7 @@ const AdminLayout = ({ children }) => {
     if (path.includes("/categories/update")) return "Update Category";
     if (path.includes("/products/list")) return "Product List";
     if (path.includes("/products/create")) return "Add Product";
-    // if (path.includes("/products/update")) return "Update Product";
+    if (path.includes("/products/update")) return "Update Product";
     if (path.includes("/users/list")) return "User List";
     if (path.includes("/users/create")) return "Add User";
     // if (path.includes("/users/update")) return "Update User";
@@ -45,7 +45,7 @@ const AdminLayout = ({ children }) => {
 
     if (path.includes("/products/list")) return "3-1";
     if (path.includes("/products/create")) return "3-2";
-    // if (path.includes("/products/update")) return "3-3";
+    if (path.includes("/products/update")) return "3-1";
     // if (path.includes("/products/delete")) return "3-4";
 
     if (path.includes("/users/list")) return "4-1";

@@ -1,7 +1,9 @@
 /* Layout genel */
 .admin-layout {
   background-color: #f4f6f8;
-  min-height: 100vh;
+  display: flex;
+  height: 100vh;       
+  overflow: hidden;
 }
 
 .ant-layout-sider {
@@ -10,6 +12,14 @@
   min-width: 320px;    /* Biraz daha geniş */
   align-items: center;
   padding-bottom: 40px;
+  
+  /* Sabitlik için eklendi: */
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh !important;
+  overflow-y: auto; /* Menü uzun ise scroll */
 }
 
 .ant-menu {
@@ -61,17 +71,36 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   height: 64px;
   user-select: none;
-}
 
-/* Content */
-.ant-layout-content {
-  background: hsl(0, 0%, 100%);
-  margin-left: 2px 4px;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+  /* Sabitlik için eklendi: */
+  position: fixed;
+  top: 0;
+  left: 20%;    /* Sider genişliği kadar sağda başlar */
+  right: 0;
+  z-index: 1000;
 }
 
 /* Footer */
 .ant-layout-footer {
   background: hsl(0, 0%, 95%);
   user-select: none;
+
+  /* Sabitlik için eklendi: */
+  position: fixed;
+  bottom: 0;
+  left: 20%;    /* Sider genişliği kadar sağda başlar */
+  right: 0;
+  height: 40px; /* İstersen yüksekliği buradan ayarla */
+  box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+/* Content (içerik) alanı */
+.ant-layout-content {
+  margin-left: 20%;        /* Sider genişliği kadar boşluk */
+  margin-top: 64px;        /* Header yüksekliği kadar boşluk */
+  margin-bottom: 60px;     /* Footer yüksekliği kadar boşluk */
+  height: calc(100vh - 64px - 40px);
+  overflow-y: auto;
+  background-color: #f4f6f4 !important;
 }

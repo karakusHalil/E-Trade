@@ -10,7 +10,7 @@ const CategoryList = () => {
       dataIndex: "image",
       key: "img",
       with: "25%",
-      render: (imgUrl) => <img src={imgUrl} alt="Category Image" />,
+      render: (imgUrl) => <img src={imgUrl} alt="Category" />,
     },
     {
       title: "Category Name",
@@ -18,7 +18,7 @@ const CategoryList = () => {
       key: "name",
       with: "50%",
       align: "center",
-      render: (text) => <a>{text}</a>,
+      render: (text) => <p>{text}</p>,
     },
     {
       title: "Process",

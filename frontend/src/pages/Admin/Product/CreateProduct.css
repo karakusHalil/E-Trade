@@ -1,0 +1,19 @@
+/* CreateProduct içeriğini ortalamak için kapsayıcı */
+.product-form-wrapper {
+  display: flex;
+  justify-content: center;      /* Yatay ortala */
+  align-items: center;          /* Dikey ortala */
+  height: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+/* Formu sabit genişlikte yap ve max sınır koy */
+.product-form-wrapper form {
+  width: 100%;
+  max-width: 900px;
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
