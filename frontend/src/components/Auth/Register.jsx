@@ -1,15 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    // console.log(name, value);
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5100/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      console.log(response);
+      if (response.ok) {
+        const result = await response.json();
+        // console.log(result);
+        //form clear
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+        });
+      } else {
+        console.log("Kullanıcı kayıt işlemi sırasında hata oluştu !");
+      }
+    } catch (error) {
+      console.log("Sunucu Hatası !", error);
+    }
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleRegister}>
         <div>
           <label>
             <span>
               Username <span className="required">*</span>
             </span>
-            <input type="text" />
+            <input
+              type="text"
+              value={formData.username}
+              name="username"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div>
@@ -17,7 +60,12 @@ const Register = () => {
             <span>
               Email address <span className="required">*</span>
             </span>
-            <input type="email" />
+            <input
+              type="email"
+              value={formData.email}
+              name="email"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div>
@@ -25,7 +73,12 @@ const Register = () => {
             <span>
               Password <span className="required">*</span>
             </span>
-            <input type="password" />
+            <input
+              type="password"
+              value={formData.password}
+              name="password"
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div className="privacy-policy-text remember">

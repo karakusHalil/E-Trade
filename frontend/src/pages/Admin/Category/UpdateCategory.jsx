@@ -1,8 +1,9 @@
 import { Button, Form, Input } from "antd";
-
+import { useNavigate } from "react-router-dom";
 import "./UpdateCategory.css";
 
 const UpdateCategory = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="category-update-wrapper">
@@ -36,7 +37,11 @@ const UpdateCategory = () => {
           </Form.Item>
 
           <Form.Item label={null}>
-            <Button type="primary" htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={() => navigate("/admin/categories/list")}
+            >
               Update
             </Button>
           </Form.Item>
