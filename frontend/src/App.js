@@ -19,6 +19,7 @@ import CreateBlog from "./pages/Admin/Blogs/CreateBlog";
 import UpdateBlog from "./pages/Admin/Blogs/UpdateBlog";
 import BlogAdminList from "./pages/Admin/Blogs/BlogAdminList";
 import "./App.css";
+import UserList from "./pages/Admin/User/UserList";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="blogs" element={<BlogAdminList />} />
           <Route path="blogs/create" element={<CreateBlog />} />
           <Route path="blogs/update" element={<UpdateBlog />} />
+          <Route path="users/list" element={<UserList />} />
         </Route>
       </Routes>
     </div>

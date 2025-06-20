@@ -212,7 +212,7 @@ const AdminLayout = ({ children }) => {
       path: "/admin/blog",
       children: [
         {
-          key: "4-1",
+          key: "5-1",
           icon: <OrderedListOutlined />,
           label: "Blog List",
           path: "/admin/blogs/list",
@@ -221,7 +221,7 @@ const AdminLayout = ({ children }) => {
           },
         },
         {
-          key: "4-2",
+          key: "5-2",
           icon: <PlusCircleOutlined />,
           label: "Blog Add",
           path: "/admin/blogs/create",
@@ -232,7 +232,6 @@ const AdminLayout = ({ children }) => {
       ],
     },
   ];
-  console.log(selectedMenuKey);
   return (
     <>
       <div className="admin-layout">
@@ -250,7 +249,7 @@ const AdminLayout = ({ children }) => {
           <Layout>
             <Header>{getTitle()}</Header>
             <Content>{children}</Content>
-            <Footer>Footer</Footer>
+            <Footer>&copy;KKUS</Footer>
           </Layout>
         </Layout>
       </div>
