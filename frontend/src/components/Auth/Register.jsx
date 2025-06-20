@@ -28,7 +28,6 @@ const Register = () => {
       if (response.ok) {
         const result = await response.json();
         localStorage.setItem("user", JSON.stringify(result));
-        navigate("/");
         // console.log(result);
         //form clear
         setFormData({
@@ -36,6 +35,7 @@ const Register = () => {
           email: "",
           password: "",
         });
+        navigate("/");
       } else {
         console.log("Kullanıcı kayıt işlemi sırasında hata oluştu !");
       }

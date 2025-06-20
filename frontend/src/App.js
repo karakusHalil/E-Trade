@@ -35,7 +35,6 @@ function App() {
         <Route path="/blog/:id" element={<SingleBlog />} />
         <Route path="/admin/*">
           <Route index element={<Dashboard />} />
-          <Route index element={<Dashboard />} />
           <Route path="categories/create" element={<CreateCategory />} />
           <Route path="categories/list" element={<CategoryList />} />
           <Route path="categories/update" element={<UpdateCategory />} />
