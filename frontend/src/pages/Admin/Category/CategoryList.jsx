@@ -1,29 +1,42 @@
 import { Table, Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./CategoryList.css";
 
 const CategoryList = () => {
   const navigate = useNavigate();
+  const [dataCategory, setDataCategory] = useState([]);
+
   const columns = [
     {
       title: "Image",
       dataIndex: "image",
       key: "img",
-      with: "25%",
-      render: (imgUrl) => <img src={imgUrl} alt="Category" />,
+      width: "30%",
+      render: (img, record) => (
+        <img
+          style={{
+            width: "100px",
+            height: "120px",
+            boxShadow: "0 1px 4px rgba(0, 0, 0, 0.3)",
+          }}
+          src={`/${record.img}`}
+          alt={`/${record.img}`}
+        />
+      ),
     },
     {
       title: "Category Name",
       dataIndex: "name",
       key: "name",
-      with: "50%",
+      width: "45%",
       align: "center",
-      render: (text) => <p>{text}</p>,
+      sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
       title: "Process",
       key: "process",
-      with: "%25",
+      width: "25%",
       render: (record) => (
         <>
           <Button
@@ -43,32 +56,34 @@ const CategoryList = () => {
       ),
     },
   ];
-  const data = [
-    {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-      tags: ["nice", "developer"],
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-      tags: ["loser"],
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sydney No. 1 Lake Park",
-      tags: ["cool", "teacher"],
-    },
-  ];
+
+  const getCategories = async () => {
+    try {
+      const response = await fetch("http://localhost:5100/api/categories");
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setDataCategory(data);
+      } else {
+        console.log("Kategoriler getirilirken bir hata oldu !");
+      }
+    } catch (error) {
+      console.log("Sunucu Hatası !");
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return (
     <>
-      <Table columns={columns} dataSource={data} />;
+      <Table
+        columns={columns}
+        dataSource={dataCategory}
+        rowKey={(item) => item._id}
+      />
+      ;
     </>
   );
 };
