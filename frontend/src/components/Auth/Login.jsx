@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+  };
   return (
     <>
       <form>
@@ -9,7 +20,12 @@ const Login = () => {
             <span>
               Username or email address <span className="required">*</span>
             </span>
-            <input type="text" />
+            <input
+              type="text"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <div>
@@ -17,7 +33,12 @@ const Login = () => {
             <span>
               Password <span className="required">*</span>
             </span>
-            <input type="password" />
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
           </label>
         </div>
         <p className="remember">
