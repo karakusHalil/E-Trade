@@ -249,7 +249,9 @@ const AdminLayout = ({ children }) => {
           <Layout>
             <Header>{getTitle()}</Header>
             <Content>{children}</Content>
-            <Footer>&copy;KKUS</Footer>
+            <Footer style={{ textAlign: "center", fontWeight: "500" }}>
+              &copy;HALILKKUS
+            </Footer>
           </Layout>
         </Layout>
       </div>
