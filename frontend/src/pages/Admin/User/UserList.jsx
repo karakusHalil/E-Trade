@@ -1,28 +1,29 @@
-import { Table } from "antd";
+import { Table, Button } from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserList = () => {
   const [dataSource, setDataSource] = useState([]);
+  const navigate = useNavigate();
   const columns = [
     {
       title: "Username",
       dataIndex: "username",
       key: "username",
-      width: "40%",
+      width: "32%",
       render: (text) => <div style={{ marginLeft: "10px" }}>{text}</div>,
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      width: "40%",
+      width: "33%",
     },
     {
       title: "Role",
       dataIndex: "role",
       key: "role",
-      width: "%20",
-      fixed: "right",
+      width: "15%",
       filters: [
         {
           text: "admin",
@@ -30,6 +31,29 @@ const UserList = () => {
         },
       ],
       onFilter: (value, record) => record.role.indexOf(value) === 0,
+    },
+    {
+      title: "Process",
+      key: "process",
+      width: "20%",
+      fixed: "right",
+      render: (record) => (
+        <>
+          <Button
+            onClick={() => {
+              navigate("/admin/users/update");
+            }}
+            color="cylan"
+            variant="solid"
+            style={{ marginRight: "5px" }}
+          >
+            Update
+          </Button>
+          <Button color="danger" variant="solid">
+            Remove
+          </Button>
+        </>
+      ),
     },
   ];
 
@@ -57,6 +81,7 @@ const UserList = () => {
         columns={columns}
         dataSource={dataSource}
         rowKey={(item) => item._id}
+        scroll={{ x: "max-content" }}
       />
     </>
   );
