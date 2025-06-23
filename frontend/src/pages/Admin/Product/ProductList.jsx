@@ -1,13 +1,10 @@
-import { Table, Tooltip } from "antd";
+import { Table, Tooltip, Button } from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
   const [dataSource, setDataSource] = useState([]);
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
+  const navigate = useNavigate();
   const columns = [
     {
       title: "İmage",
@@ -109,6 +106,24 @@ const ProductList = () => {
     {
       title: "Process",
       key: "process",
+      width: "20%",
+      render: (record) => (
+        <>
+          <Button
+            onClick={() => {
+              navigate("/admin/products/update");
+            }}
+            color="cylan"
+            variant="solid"
+            style={{ marginRight: "5px" }}
+          >
+            Update
+          </Button>
+          <Button color="danger" variant="solid">
+            Remove
+          </Button>
+        </>
+      ),
     },
   ];
 
@@ -140,6 +155,10 @@ const ProductList = () => {
       console.log("Sunucu Hatası !");
     }
   };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   return (
     <>
