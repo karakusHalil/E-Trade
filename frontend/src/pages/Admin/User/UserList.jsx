@@ -8,19 +8,20 @@ const UserList = () => {
       title: "Username",
       dataIndex: "username",
       key: "username",
-      with: "30%",
+      width: "40%",
+      render: (text) => <div style={{ marginLeft: "10px" }}>{text}</div>,
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      with: "40%",
+      width: "40%",
     },
     {
       title: "Role",
       dataIndex: "role",
       key: "role",
-      with: "%30",
+      width: "%20",
       fixed: "right",
       filters: [
         {
