@@ -12,7 +12,7 @@ const CreateCategory = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
-      console.log(values)
+      console.log(values);
       if (response.ok) {
         navigate("/admin/categories/list");
       } else {

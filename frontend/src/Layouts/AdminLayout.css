@@ -100,7 +100,7 @@
   margin-left: 20%;        /* Sider genişliği kadar boşluk */
   margin-top: 64px;        /* Header yüksekliği kadar boşluk */
   margin-bottom: 60px;     /* Footer yüksekliği kadar boşluk */
-  height: calc(100vh - 64px - 40px);
+  height: calc(100vh - 32px - 20px);
   overflow-y: auto;
   background-color: #f4f6f4 !important;
 }

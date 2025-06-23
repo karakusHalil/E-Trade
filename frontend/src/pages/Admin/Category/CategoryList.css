@@ -1,7 +1,7 @@
 /* Tablonun dış kutusu */
 .ant-table-wrapper {
   background-color: #ffffff;
-  padding: 32px;
+  padding: 2px;
   margin: 5px auto;         /* 🔧 Sağa sola otomatik ortala, üst-alt 5px */
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
