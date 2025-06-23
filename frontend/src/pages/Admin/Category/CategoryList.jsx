@@ -41,7 +41,7 @@ const CategoryList = () => {
         <>
           <Button
             onClick={() => {
-              navigate("/admin/categories/update");
+              navigate(`/admin/categories/update/${record._id}`);
             }}
             color="cylan"
             variant="solid"
@@ -62,7 +62,6 @@ const CategoryList = () => {
       const response = await fetch("http://localhost:5100/api/categories");
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         setDataCategory(data);
       } else {
         console.log("Kategoriler getirilirken bir hata oldu !");
