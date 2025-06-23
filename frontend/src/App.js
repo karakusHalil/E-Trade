@@ -38,10 +38,10 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="categories/list" element={<CategoryList />} />
           <Route path="categories/create" element={<CreateCategory />} />
-          <Route path="categories/update" element={<UpdateCategory />} />
+          <Route path="categories/update/:id" element={<UpdateCategory />} />
           <Route path="products/list" element={<ProductList />} />
           <Route path="products/create" element={<CreateProduct />} />
-          <Route path="products/update" element={<UpdateProduct />} />
+          <Route path="products/update/:id  " element={<UpdateProduct />} />
           <Route path="blogs" element={<BlogAdminList />} />
           <Route path="blogs/create" element={<CreateBlog />} />
           <Route path="blogs/update" element={<UpdateBlog />} />
