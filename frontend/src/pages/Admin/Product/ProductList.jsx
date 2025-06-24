@@ -111,7 +111,7 @@ const ProductList = () => {
         <>
           <Button
             onClick={() => {
-              navigate("/admin/products/update");
+              navigate(`/admin/products/update/${record._id}`);
             }}
             color="cylan"
             variant="solid"

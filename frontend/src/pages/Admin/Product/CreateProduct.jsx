@@ -1,9 +1,11 @@
 import { Button, Form, Input, InputNumber, Checkbox, Select } from "antd";
 import "./CreateProduct.css";
+import { useEffect, useState } from "react";
 
 const CreateProduct = () => {
   const [form] = Form.useForm();
   const formLayout = "vertical";
+  const [categories, setCategories] = useState([]);
   const colorOptions = [
     "Black",
     "White",
@@ -14,6 +16,25 @@ const CreateProduct = () => {
     "Pink",
   ];
   const sizeOptions = ["XS", "S", "M", "L", "XL", "XXL"];
+
+  const getCategories = async () => {
+    try {
+      const response = await fetch("http://localhost:5100/api/categories");
+      if (response.ok) {
+        const data = await response.json();
+        setCategories(data);
+      } else {
+        console.log("Kategori Getirilirken Bir Hata Meydana Geldi !");
+      }
+    } catch (error) {
+      console.log("Sunucu Hatası !");
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, [categories]);
+
   return (
     <>
       <div className="product-form-wrapper">
@@ -32,7 +53,7 @@ const CreateProduct = () => {
             label="Product Name"
             name="name"
             rules={[
-              { required: true, message: "Please input your Category Name!" },
+              { required: true, message: "Lütfen Ürün ismi ekleyiniz !" },
             ]}
           >
             <Input />
@@ -42,7 +63,7 @@ const CreateProduct = () => {
             name="images"
             label="Image Url"
             rules={[
-              { required: true, message: "Please input your Image Url!" },
+              { required: true, message: "Lütfen İmg Url ekleyiniz !" },
             ]}
           >
             <Input.TextArea />
@@ -52,20 +73,23 @@ const CreateProduct = () => {
             name="description"
             label="Description"
             rules={[
-              { required: true, message: "Please input your description!" },
+              { required: true, message: "Lütfen açıklama ekleyiniz !" },
             ]}
           >
             <Input.TextArea />
           </Form.Item>
+
           <Form.Item
             label="Categories"
             name="category"
             rules={[{ required: true, message: "Lütfen kategori seçiniz !" }]}
           >
             <Select placeholder="Select a category...">
-              <Select.Option>1</Select.Option>
-              <Select.Option>2</Select.Option>
-              <Select.Option>3</Select.Option>
+              {categories.map((category) => (
+                <Select.Option key={category._id} value={category._id}>
+                  {category.name}
+                </Select.Option>
+              ))}
             </Select>
           </Form.Item>
 
