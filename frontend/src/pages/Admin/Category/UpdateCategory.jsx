@@ -8,31 +8,32 @@ const UpdateCategory = () => {
   const navigate = useNavigate();
   const params = useParams();
   const categoryId = params.id;
-  console.log(categoryId);
-  const getCategoryById = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:5100/api/categories/${categoryId}`
-      );
-      if (response.ok) {
-        const data = await response.json();
-        if (data) {
-          form.setFieldsValue({
-            name: data.name,
-            img: data.img,
-            id: categoryId,
-          });
-          console.log(form.getFieldValue);
-        }
-      }
-    } catch (error) {
-      console.log("Sunucu Hatası !");
-    }
-  };
+  // console.log(categoryId);
 
   useEffect(() => {
+    const getCategoryById = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5100/api/categories/${categoryId}`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          if (data) {
+            form.setFieldsValue({
+              name: data.name,
+              img: data.img,
+              id: categoryId,
+            });
+            console.log(form.getFieldValue);
+          }
+        }
+      } catch (error) {
+        console.log("Sunucu Hatası !");
+      }
+    };
+
     getCategoryById();
-  }, []);
+  }, [categoryId, form]);
 
   const handleUpdateCategory = async (values) => {
     try {
