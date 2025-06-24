@@ -49,7 +49,11 @@ const CategoryList = () => {
           >
             Update
           </Button>
-          <Button color="danger" variant="solid">
+          <Button
+            color="danger"
+            variant="solid"
+            onClick={() => deleteCategory(record._id)}
+          >
             Remove
           </Button>
         </>
@@ -65,6 +69,27 @@ const CategoryList = () => {
         setDataCategory(data);
       } else {
         console.log("Kategoriler getirilirken bir hata oldu !");
+      }
+    } catch (error) {
+      console.log("Sunucu Hatası !");
+    }
+  };
+
+  const deleteCategory = async (categoryId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5100/api/categories/${categoryId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ _id: categoryId }),
+        }
+      );
+      if (response.ok) {
+        await getCategories();
+        navigate("/admin/categories/list");
+      } else {
+        console.log("Kategori Silme İşlemi Gerçekleştirilemedi !");
       }
     } catch (error) {
       console.log("Sunucu Hatası !");
