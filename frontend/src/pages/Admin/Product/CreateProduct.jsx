@@ -17,6 +17,29 @@ const CreateProduct = () => {
   ];
   const sizeOptions = ["XS", "S", "M", "L", "XL", "XXL"];
 
+  const addProduct = async (values) => {
+    const { colors, sizes, ...restValue } = values;
+    const imageLinks = values.images.split("\n").map((link) => link.trim());
+    try {
+      const response = await fetch("http://localhost:5100/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          colors,
+          sizes,
+        }),
+      });
+      if (response.ok) {
+        form.resetFields();
+      } else {
+        console.log("Ürün Oluşturulurken Hata Meydana Geldi !");
+      }
+    } catch (error) {
+      console.log("Sunucu Hatası !");
+    }
+  };
+
   const getCategories = async () => {
     try {
       const response = await fetch("http://localhost:5100/api/categories");
@@ -48,6 +71,7 @@ const CreateProduct = () => {
             price: 0,
             discount: 0,
           }}
+          onFinish={addProduct}
         >
           <Form.Item
             label="Product Name"
@@ -62,9 +86,7 @@ const CreateProduct = () => {
           <Form.Item
             name="images"
             label="Image Url"
-            rules={[
-              { required: true, message: "Lütfen İmg Url ekleyiniz !" },
-            ]}
+            rules={[{ required: true, message: "Lütfen İmg Url ekleyiniz !" }]}
           >
             <Input.TextArea />
           </Form.Item>
@@ -72,9 +94,7 @@ const CreateProduct = () => {
           <Form.Item
             name="description"
             label="Description"
-            rules={[
-              { required: true, message: "Lütfen açıklama ekleyiniz !" },
-            ]}
+            rules={[{ required: true, message: "Lütfen açıklama ekleyiniz !" }]}
           >
             <Input.TextArea />
           </Form.Item>
