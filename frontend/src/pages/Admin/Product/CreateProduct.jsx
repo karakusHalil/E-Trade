@@ -20,12 +20,14 @@ const CreateProduct = () => {
   const addProduct = async (values) => {
     const { colors, sizes, ...restValue } = values;
     const imageLinks = values.images.split("\n").map((link) => link.trim());
+    console.log(imageLinks, colors, sizes, restValue);
     try {
       const response = await fetch("http://localhost:5100/api/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...values,
+          ...restValue,
+          images: imageLinks,
           colors,
           sizes,
         }),
