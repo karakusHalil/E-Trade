@@ -1,8 +1,20 @@
-import { Button, Form, Input, InputNumber, Checkbox, Select } from "antd";
+import {
+  Button,
+  Form,
+  Input,
+  InputNumber,
+  Checkbox,
+  Select,
+  message,
+} from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 const UpdateProduct = () => {
   const [form] = Form.useForm();
   const formLayout = "vertical";
+  const navigate = useNavigate();
+  const params = useParams();
+  const productId = params.id;
   const [categories, setCategories] = useState([]);
   const colorOptions = [
     "Black",
@@ -12,6 +24,9 @@ const UpdateProduct = () => {
     "Yellow",
     "Blue",
     "Pink",
+    "Aqua",
+    "Lime",
+    "Navy",
   ];
   const sizeOptions = ["XS", "S", "M", "L", "XL", "XXL"];
 
@@ -29,23 +44,70 @@ const UpdateProduct = () => {
     }
   };
 
+  const updateProduct = async (values) => {
+    const { colors, sizes, ...restValue } = values;
+    try {
+      const response = await fetch(
+        `http://localhost:5100/api/products/${productId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...restValue, colors, sizes }),
+        }
+      );
+      if (response.ok) {
+        message.success("Ürün başarıyla güncellendi");
+        navigate("/admin/products/list");
+      } else {
+        message.warning("Ürün güncellenirken hata oldu");
+      }
+    } catch (error) {
+      console.log("Sunucu Hatası !");
+    }
+  };
+
+  const getProductbyId = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5100/api/products/${productId}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        const formattedColors = data.colors.map(
+          (c) => c.charAt(0).toUpperCase() + c.slice(1).toLowerCase()
+        );
+        if (data) {
+          form.setFieldsValue({
+            id: data._id,
+            name: data.name,
+            images: data.images,
+            price: data.price,
+            description: data.description,
+            colors: formattedColors,
+            sizes: data.sizes,
+            category: data.category,
+            stockCode: data.stockCode,
+            discount: data.discount,
+          });
+        }
+      } else {
+        message.error("Ürün getirme başarısız !");
+        return;
+      }
+    } catch (error) {
+      console.log("Sunucu hatası !");
+    }
+  };
+
   useEffect(() => {
+    getProductbyId();
     getCategories();
-  }, [categories]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productId]);
   return (
     <>
       <div className="product-form-wrapper">
-        <Form
-          layout={formLayout}
-          form={form}
-          initialValues={{
-            layout: formLayout,
-            colors: ["Black", "White"],
-            sizes: ["S", "M", "L"],
-            price: 0,
-            discount: 0,
-          }}
-        >
+        <Form layout={formLayout} form={form} onFinish={updateProduct}>
           <Form.Item
             label="Product Name"
             name="name"
