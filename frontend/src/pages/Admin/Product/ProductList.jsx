@@ -1,4 +1,4 @@
-import { Table, Tooltip, Button } from "antd";
+import { Table, Tooltip, Button, message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -171,6 +171,7 @@ const ProductList = () => {
         }
       );
       if (response.ok) {
+        message.success("Ürün başarıyla silindi");
         await getProducts();
         navigate("/admin/products/list");
       } else {
