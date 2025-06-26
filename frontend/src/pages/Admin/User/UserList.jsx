@@ -1,4 +1,4 @@
-import { Table, Button } from "antd";
+import { Table, Button, message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -49,7 +49,11 @@ const UserList = () => {
           >
             Update
           </Button>
-          <Button color="danger" variant="solid">
+          <Button
+            onClick={() => deleteUser(record._id)}
+            color="danger"
+            variant="solid"
+          >
             Remove
           </Button>
         </>
@@ -68,6 +72,26 @@ const UserList = () => {
       }
     } catch (error) {
       console.log("Sunucu Hatası !");
+    }
+  };
+
+  const deleteUser = async (userId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5100/api/users/${userId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        message.success("Kullanıcı başarıyla silindi !");
+        getUsers();
+        navigate("/admin/users/list");
+      } else {
+        message.error("Kullanıcı silime işlemi gerçekleştirilemedi !");
+      }
+    } catch (error) {
+      console.log("Sunucu hatası !");
     }
   };
 
