@@ -191,7 +191,7 @@ const UpdateProduct = () => {
 
           <Form.Item label={null}>
             <Button type="primary" htmlType="submit">
-              Add
+              Update
             </Button>
           </Form.Item>
         </Form>
