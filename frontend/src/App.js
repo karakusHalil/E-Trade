@@ -18,8 +18,9 @@ import UpdateProduct from "./pages/Admin/Product/UpdateProduct";
 import CreateBlog from "./pages/Admin/Blogs/CreateBlog";
 import UpdateBlog from "./pages/Admin/Blogs/UpdateBlog";
 import BlogAdminList from "./pages/Admin/Blogs/BlogAdminList";
-import "./App.css";
 import UserList from "./pages/Admin/User/UserList";
+import UpdateUser from "./pages/Admin/User/UpdateUser";
+import "./App.css";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="blogs/create" element={<CreateBlog />} />
           <Route path="blogs/update" element={<UpdateBlog />} />
           <Route path="users/list" element={<UserList />} />
+          <Route path="users/update/:id" element={<UpdateUser />} />
         </Route>
       </Routes>
     </div>
