@@ -119,7 +119,11 @@ const ProductList = () => {
           >
             Update
           </Button>
-          <Button color="danger" variant="solid">
+          <Button
+            onClick={() => deleteProduct(record._id)}
+            color="danger"
+            variant="solid"
+          >
             Remove
           </Button>
         </>
@@ -150,6 +154,27 @@ const ProductList = () => {
           return { ...product, categoryName: category ? category.name : "Yok" };
         });
         setDataSource(data);
+      }
+    } catch (error) {
+      console.log("Sunucu Hatası !");
+    }
+  };
+
+  const deleteProduct = async (productId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5100/api/products/${productId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ _id: productId }),
+        }
+      );
+      if (response.ok) {
+        await getProducts();
+        navigate("/admin/products/list");
+      } else {
+        console.log("Ürün silme işlemi gerçekleştirilemedi !");
       }
     } catch (error) {
       console.log("Sunucu Hatası !");
