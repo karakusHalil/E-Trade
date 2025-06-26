@@ -166,8 +166,6 @@ const ProductList = () => {
         `http://localhost:5100/api/products/${productId}`,
         {
           method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ _id: productId }),
         }
       );
       if (response.ok) {
