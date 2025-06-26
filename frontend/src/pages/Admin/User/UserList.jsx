@@ -41,7 +41,7 @@ const UserList = () => {
         <>
           <Button
             onClick={() => {
-              navigate("/admin/users/update");
+              navigate(`/admin/users/update/${record._id}`);
             }}
             color="cylan"
             variant="solid"

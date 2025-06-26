@@ -29,7 +29,7 @@ const AdminLayout = ({ children }) => {
     if (path.includes("/products/update")) return "Update Product";
     if (path.includes("/users/list")) return "User List";
     if (path.includes("/users/create")) return "Add User";
-    // if (path.includes("/users/update")) return "Update User";
+    if (path.includes("/users/update")) return "Update User";
     if (path.includes("/blogs/list")) return "Blog List";
     if (path.includes("/blogs/create")) return "Add Blog";
     if (path === "/admin") return "Dashboard";
@@ -50,6 +50,7 @@ const AdminLayout = ({ children }) => {
 
     if (path.includes("/users/list")) return "4-1";
     if (path.includes("/users/create")) return "4-2";
+    if (path.includes("/users/update")) return "4-1";
     // if (path.includes("/users/update")) return "4-3";
     // if (path.includes("/users/delete")) return "4-4";
 
