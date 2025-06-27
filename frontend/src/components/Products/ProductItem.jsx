@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./ProductItem.css";
-const ProductItem = ({ product }) => {
-  const discountPrice = product.price - ((product.price * product.discount) / 100);
+const ProductItem = ({ product, addToCart }) => {
+  const discountPrice =
+    product.price - (product.price * product.discount) / 100;
+
   return (
     <>
       <li
@@ -43,7 +45,11 @@ const ProductItem = ({ product }) => {
           </div>
           <span className="product-discount">-{product.discount}%</span>
           <div className="product-links">
-            <button className="add-to-cart" data-id={2}>
+            <button
+              onClick={() => addToCart(product)}
+              className="add-to-cart"
+              data-id={2}
+            >
               <i className="bi bi-basket-fill" />
             </button>
             <button>
@@ -72,5 +78,6 @@ ProductItem.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     discount: PropTypes.number,
-  }).isRequired,  
+  }).isRequired,
+  addToCart: PropTypes.func,
 };

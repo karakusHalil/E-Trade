@@ -4,7 +4,11 @@ import { message } from "antd";
 import "./Products.css";
 const Products = () => {
   const [products, setProducts] = useState([]);
-
+  const [cartItems, setCartItems] = useState([]);
+  const addToCart = (cartItem) => {
+    setCartItems([...cartItems, cartItem]);
+  };
+  console.log(cartItems)
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -43,7 +47,7 @@ const Products = () => {
                 }}
               >
                 {products.map((product) => (
-                  <ProductItem key={product._id} product={product} />
+                  <ProductItem key={product._id} product={product} addToCart={addToCart}/>
                 ))}
               </ul>
             </div>
