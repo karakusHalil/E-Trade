@@ -1,8 +1,11 @@
-import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router-dom";
+import { CartContext } from "../../../contexts/CartProvider";
+import { useContext } from "react";
+import PropTypes from "prop-types";
 import "./Header.css";
 
 const Header = ({ setIsSearchVisible }) => {
+  const { cartItems } = useContext(CartContext);
   return (
     <>
       <header>
@@ -204,7 +207,9 @@ const Header = ({ setIsSearchVisible }) => {
                   <div className="header-cart">
                     <Link to="/cart" className="header-cart-link">
                       <i className="bi bi-bag" />
-                      <span className="header-cart-count">0</span>
+                      <span className="header-cart-count">
+                        {cartItems.length}
+                      </span>
                     </Link>
                   </div>
                 </div>

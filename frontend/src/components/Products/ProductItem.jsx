@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../contexts/CartProvider";
 import PropTypes from "prop-types";
 import "./ProductItem.css";
-const ProductItem = ({ product, addToCart }) => {
+const ProductItem = ({ product }) => {
   const discountPrice =
     product.price - (product.price * product.discount) / 100;
-
+  const { addToCart } = useContext(CartContext);
   return (
     <>
       <li
