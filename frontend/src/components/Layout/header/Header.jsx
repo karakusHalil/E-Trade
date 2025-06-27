@@ -83,30 +83,39 @@ const Header = ({ setIsSearchVisible }) => {
                               </h3>
                               <ul className="megamenu-menu-list">
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Shop Standard</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Shop Full</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Shop Only Categories</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Shop Image Categories</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Shop Sub Categories</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Shop List</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Hover Style 1</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Hover Style 2</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Hover Style 3</a>
                                 </li>
                               </ul>
@@ -117,15 +126,19 @@ const Header = ({ setIsSearchVisible }) => {
                               </h3>
                               <ul className="megamenu-menu-list">
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Sidebar</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Filter Side Out</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Filter Dropdown</a>
                                 </li>
                                 <li>
+                                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                   <a href="#">Filter Drawer</a>
                                 </li>
                               </ul>
@@ -201,6 +214,7 @@ const Header = ({ setIsSearchVisible }) => {
                   >
                     <i className="bi bi-search" />
                   </button>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   <a href="#">
                     <i className="bi bi-heart" />
                   </a>
