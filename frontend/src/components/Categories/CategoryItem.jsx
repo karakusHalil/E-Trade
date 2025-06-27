@@ -4,6 +4,7 @@ const CategoryItem = ({ category }) => {
   return (
     <>
       <li className="category-item">
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a href="#">
           <img
             src={category.img}

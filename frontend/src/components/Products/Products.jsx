@@ -12,7 +12,7 @@ const Products = () => {
         if (response.ok) {
           const data = await response.json();
           setProducts(data);
-          console.log("data", data);
+          // console.log("data", data);
         } else {
           message.error("Ürünler getirilirken hata oldu !");
         }
@@ -22,7 +22,7 @@ const Products = () => {
     };
     getProducts();
   }, []);
-  console.log(products);
+  // console.log(products);
   return (
     <>
       <section className="products">
