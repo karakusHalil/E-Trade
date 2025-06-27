@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Categories.css";
 import CategoryItem from "./CategoryItem";
 import { message } from "antd";
+import "./Categories.css";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);

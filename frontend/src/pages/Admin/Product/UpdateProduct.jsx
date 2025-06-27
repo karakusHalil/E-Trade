@@ -45,16 +45,23 @@ const UpdateProduct = () => {
   };
 
   const updateProduct = async (values) => {
-    const { colors, sizes, ...restValue } = values;
+    const { colors, sizes, images, ...restValue } = values;
+    const imageLinks = values.images.split("\n").map((link) => link.trim());
     try {
       const response = await fetch(
         `http://localhost:5100/api/products/${productId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...restValue, colors, sizes }),
+          body: JSON.stringify({
+            ...restValue,
+            colors,
+            sizes,
+            images: imageLinks,
+          }),
         }
       );
+      console.log(response.json());
       if (response.ok) {
         message.success("Ürün başarıyla güncellendi");
         navigate("/admin/products/list");
@@ -80,7 +87,7 @@ const UpdateProduct = () => {
           form.setFieldsValue({
             id: data._id,
             name: data.name,
-            images: data.images,
+            images: data.images.join("\n"),
             price: data.price,
             description: data.description,
             colors: formattedColors,
@@ -123,7 +130,7 @@ const UpdateProduct = () => {
             label="Image Url"
             rules={[{ required: true, message: "Lütfen İmg Url ekleyiniz !" }]}
           >
-            <Input.TextArea />
+            <Input.TextArea placeholder="Her bir görsel URL'ini virgülsüz yeni satıra yazınız..."/>
           </Form.Item>
 
           <Form.Item

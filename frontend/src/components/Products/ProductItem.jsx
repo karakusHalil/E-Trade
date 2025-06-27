@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./ProductItem.css";
-const ProductItem = () => {
+const ProductItem = ({ product }) => {
   return (
     <>
       <li
@@ -9,13 +10,13 @@ const ProductItem = () => {
       >
         <div className="product-image">
           <a href="#" draggable="true">
-            <img src="img/products/product2/1.png" alt className="img1" />
-            <img src="img/products/product2/2.png" alt className="img2" />
+            <img src={product.images[0]} alt={product.name} className="img1" />
+            <img src={product.images[1]} alt={product.name} className="img2" />
           </a>
         </div>
         <div className="product-info">
           <a href="$" className="product-title" draggable="true">
-            Ridley High Waist
+            {product.name}
           </a>
           <ul className="product-star">
             <li>
@@ -35,10 +36,10 @@ const ProductItem = () => {
             </li>
           </ul>
           <div className="product-prices">
-            <strong className="new-price">$100.00</strong>
+            <strong className="new-price">${product.price}</strong>
             <span className="old-price">$208.00</span>
           </div>
-          <span className="product-discount">-33%</span>
+          <span className="product-discount">-{product.discount}%</span>
           <div className="product-links">
             <button className="add-to-cart" data-id={2}>
               <i className="bi bi-basket-fill" />
@@ -60,3 +61,12 @@ const ProductItem = () => {
 };
 
 export default ProductItem;
+
+ProductItem.propTypes = {
+  product: PropTypes.shape({
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    discount: PropTypes.number,
+  }).isRequired,
+};
