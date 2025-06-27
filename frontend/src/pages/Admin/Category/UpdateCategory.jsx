@@ -24,7 +24,7 @@ const UpdateCategory = () => {
               img: data.img,
               id: categoryId,
             });
-            console.log(form.getFieldValue);
+            // console.log(form.getFieldValue);
           }
         }
       } catch (error) {
