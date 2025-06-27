@@ -21,7 +21,7 @@ const Categories = () => {
     };
     getCategories();
   }, []);
-  console.log(categories);
+  // console.log(categories);
   return (
     <>
       <section className="categories">

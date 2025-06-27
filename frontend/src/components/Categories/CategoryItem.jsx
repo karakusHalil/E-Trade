@@ -20,5 +20,8 @@ const CategoryItem = ({ category }) => {
 export default CategoryItem;
 
 CategoryItem.propTypes = {
-  category: PropTypes.array,
+  category: PropTypes.shape({
+    img: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
 };
