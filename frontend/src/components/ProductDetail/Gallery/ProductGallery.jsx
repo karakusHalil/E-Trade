@@ -3,54 +3,50 @@ import PropTypes from "prop-types";
 import "./ProductGallery.css";
 
 const ProductGallery = ({ singleProduct }) => {
-  const [productImages, setProductImages] = useState({
-    images: [],
-  });
+  const [productImages, setProductImages] = useState(
+    singleProduct?.images || []
+  );
+  const [activeImage, setActiveImage] = useState(
+    singleProduct?.images[0] || ""
+  );
 
   useEffect(() => {
-    if (singleProduct?.images)
-      setProductImages({images :singleProduct.images});
+    if (singleProduct?.images) {
+      setProductImages(singleProduct.images);
+      setActiveImage(singleProduct.images[0]);
+    }
   }, [singleProduct]);
+
+  const handleThumbnailClick = (image) => {
+    setActiveImage(image);
+  };
 
   return (
     <>
       <div className="product-gallery">
         <div className="single-image-wrapper">
-          <img src={`/${productImages.images[0]}`} id="single-image" alt="" />
+          <img src={`/${activeImage}`} id="single-image" alt="" />
         </div>
         <div className="product-thumb">
           <div className="glide__track" data-glide-el="track">
             <ol className="gallery-thumbs glide__slides">
-              <li
-                className="glide__slide glide__slide--active"
-                style={{ width: 109, marginRight: 5 }}
-              >
-                <img
-                  src={`/${productImages.images[0]}`}
-                  alt=""
-                  className="img-fluid active"
-                />
-              </li>
-              <li
-                className="glide__slide"
-                style={{ width: 109, marginLeft: 5, marginRight: 5 }}
-              >
-                <img
-                  src={`/${productImages.images[1]}`}
-                  alt=""
-                  className="img-fluid"
-                />
-              </li>
-              <li
-                className="glide__slide"
-                style={{ width: 109, marginLeft: 5 }}
-              >
-                <img
-                  src={`/${productImages.images[2]}`}
-                  alt=""
-                  className="img-fluid"
-                />
-              </li>
+              {productImages.length > 0 &&
+                productImages.map((image, index) => (
+                  <li
+                    key={index}
+                    className={`glide__slide  ${
+                      image === activeImage ? "glide__slide--active" : ""
+                    }`}
+                    style={{ width: 109, marginRight: 5 }}
+                  >
+                    <img
+                      src={`/${image}`}
+                      alt={`Product thumbnail ${index + 1}`}
+                      className="img-fluid"
+                      onClick={() => handleThumbnailClick(image)}
+                    />
+                  </li>
+                ))}
             </ol>
           </div>
           <div className="glide__arrows" data-glide-el="controls">

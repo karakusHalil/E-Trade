@@ -1,11 +1,15 @@
+import { useEffect, useState } from "react";
 import "./ProductInfo.css";
 import PropTypes from "prop-types";
 
-const ProductInfo = ({singleProduct}) => {
+const ProductInfo = ({ singleProduct }) => {
+  if (!singleProduct) return <div>Loading...</div>;
+  const discountPrice =
+    singleProduct.price - singleProduct.price * (singleProduct.discount / 100);
   return (
     <>
       <div className="product-info">
-        <h1 className="product-title">Ridley High Waist</h1>
+        <h1 className="product-title">{singleProduct.name}</h1>
         <div className="product-review">
           <ul className="product-star">
             <li>
@@ -27,13 +31,10 @@ const ProductInfo = ({singleProduct}) => {
           <span>2 reviews</span>
         </div>
         <div className="product-price">
-          <s className="old-price">$165</s>
-          <strong className="new-price">$100</strong>
+          <s className="old-price">${singleProduct.price.toFixed(2)}</s>
+          <strong className="new-price">${discountPrice.toFixed(2)}</strong>
         </div>
-        <p className="product-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+        <p className="product-description">{singleProduct.description}</p>
         <form className="variations-form">
           <div className="variations">
             <div className="colors">
@@ -122,8 +123,6 @@ const ProductInfo = ({singleProduct}) => {
 };
 
 export default ProductInfo;
-
-
 
 ProductInfo.propTypes = {
   singleProduct: PropTypes.shape({
