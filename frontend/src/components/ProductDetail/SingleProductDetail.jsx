@@ -13,7 +13,7 @@ const SingleProductDetail = ({ singleProduct }) => {
           <div className="single-product-wrapper">
             <Breadcrumb />
 
-            <SingleContent />
+            <SingleContent singleProduct={singleProduct}/>
 
             <SingleTabs />
           </div>

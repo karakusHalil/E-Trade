@@ -13,7 +13,7 @@ const ProductDetail = () => {
           `http://localhost:5100/api/products/${productId}`
         );
         if (response.ok) {
-          const data = response.json();
+          const data = await response.json();
           setSingleProduct(data);
         }
       } catch (error) {

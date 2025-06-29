@@ -1,6 +1,7 @@
 import "./ProductInfo.css";
+import PropTypes from "prop-types";
 
-const ProductInfo = () => {
+const ProductInfo = ({singleProduct}) => {
   return (
     <>
       <div className="product-info">
@@ -121,3 +122,19 @@ const ProductInfo = () => {
 };
 
 export default ProductInfo;
+
+
+
+ProductInfo.propTypes = {
+  singleProduct: PropTypes.shape({
+    _id: PropTypes.string, // MongoDB'nin otomatik oluşturduğu id
+    name: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string),
+    price: PropTypes.number.isRequired,
+    description: PropTypes.string,
+    colors: PropTypes.arrayOf(PropTypes.string),
+    sizes: PropTypes.arrayOf(PropTypes.string),
+    stockCode: PropTypes.string.isRequired,
+    discount: PropTypes.number,
+  }),
+};

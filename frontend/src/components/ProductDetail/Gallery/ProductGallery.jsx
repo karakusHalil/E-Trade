@@ -1,10 +1,22 @@
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "./ProductGallery.css";
-const ProductGallery = () => {
+
+const ProductGallery = ({ singleProduct }) => {
+  const [productImages, setProductImages] = useState({
+    images: [],
+  });
+
+  useEffect(() => {
+    if (singleProduct?.images)
+      setProductImages({ images: singleProduct.images });
+  }, [singleProduct]);
+
   return (
     <>
       <div className="product-gallery">
         <div className="single-image-wrapper">
-          <img src="img/products/product2/1.png" id="single-image" alt />
+          <img src={`/${productImages.images[0]}`} id="single-image" alt="" />
         </div>
         <div className="product-thumb">
           <div className="glide__track" data-glide-el="track">
@@ -14,8 +26,8 @@ const ProductGallery = () => {
                 style={{ width: 109, marginRight: 5 }}
               >
                 <img
-                  src="img/products/product2/1.png"
-                  alt
+                  src={`/${productImages.images[0]}`}
+                  alt=""
                   className="img-fluid active"
                 />
               </li>
@@ -24,7 +36,7 @@ const ProductGallery = () => {
                 style={{ width: 109, marginLeft: 5, marginRight: 5 }}
               >
                 <img
-                  src="img/products/product2/2.png"
+                  src={`/${productImages.images[1]}`}
                   alt
                   className="img-fluid"
                 />
@@ -34,7 +46,7 @@ const ProductGallery = () => {
                 style={{ width: 109, marginLeft: 5 }}
               >
                 <img
-                  src="img/products/product2/3.png"
+                  src={`/${productImages.images[2]}`}
                   alt
                   className="img-fluid"
                 />
@@ -62,3 +74,17 @@ const ProductGallery = () => {
 };
 
 export default ProductGallery;
+
+ProductGallery.propTypes = {
+  singleProduct: PropTypes.shape({
+    _id: PropTypes.string, // MongoDB'nin otomatik oluşturduğu id
+    name: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string),
+    price: PropTypes.number.isRequired,
+    description: PropTypes.string,
+    colors: PropTypes.arrayOf(PropTypes.string),
+    sizes: PropTypes.arrayOf(PropTypes.string),
+    stockCode: PropTypes.string.isRequired,
+    discount: PropTypes.number,
+  }),
+};
