@@ -9,7 +9,7 @@ const ProductGallery = ({ singleProduct }) => {
 
   useEffect(() => {
     if (singleProduct?.images)
-      setProductImages({ images: singleProduct.images });
+      setProductImages({images :singleProduct.images});
   }, [singleProduct]);
 
   return (
@@ -37,7 +37,7 @@ const ProductGallery = ({ singleProduct }) => {
               >
                 <img
                   src={`/${productImages.images[1]}`}
-                  alt
+                  alt=""
                   className="img-fluid"
                 />
               </li>
@@ -47,7 +47,7 @@ const ProductGallery = ({ singleProduct }) => {
               >
                 <img
                   src={`/${productImages.images[2]}`}
-                  alt
+                  alt=""
                   className="img-fluid"
                 />
               </li>

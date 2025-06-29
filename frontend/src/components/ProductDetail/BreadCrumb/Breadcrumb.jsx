@@ -1,13 +1,15 @@
+import { Link, useNavigate } from "react-router-dom";
 import "./Breadcrumb.css";
 
 const Breadcrumb = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="single-topbar">
         <nav className="breadcrumb">
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <a href="#">Man</a>
