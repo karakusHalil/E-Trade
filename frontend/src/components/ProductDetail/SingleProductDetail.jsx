@@ -3,8 +3,9 @@ import SingleTabs from "./SingleTabs/SingleTabs";
 import SingleContent from "./SingleContent";
 import CampaignSingle from "../CampaignSingle/CampaignSingle";
 import "./SingleProductDetail.css";
+import PropTypes from "prop-types";
 
-const SingleProductDetail = () => {
+const SingleProductDetail = ({ singleProduct }) => {
   return (
     <>
       <section className="single-product">
@@ -24,3 +25,17 @@ const SingleProductDetail = () => {
 };
 
 export default SingleProductDetail;
+
+SingleProductDetail.propTypes = {
+  singleProduct: PropTypes.shape({
+    _id: PropTypes.string, // MongoDB'nin otomatik oluşturduğu id
+    name: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string),
+    price: PropTypes.number.isRequired,
+    description: PropTypes.string,
+    colors: PropTypes.arrayOf(PropTypes.string),
+    sizes: PropTypes.arrayOf(PropTypes.string),
+    stockCode: PropTypes.string.isRequired,
+    discount: PropTypes.number,
+  }),
+};

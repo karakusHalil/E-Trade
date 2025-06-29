@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../contexts/CartProvider";
 import PropTypes from "prop-types";
 import "./ProductItem.css";
@@ -6,6 +7,7 @@ const ProductItem = ({ product }) => {
   const discountPrice =
     product.price - (product.price * product.discount) / 100;
   const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
   return (
     <>
       <li
@@ -57,8 +59,11 @@ const ProductItem = ({ product }) => {
               <i className="bi bi-heart-fill" />
             </button>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#" className="product-link" data-id={2} draggable="true">
-              <i className="bi bi-eye-fill" />
+            <a onClick={() => navigate(`/product/${product._id}`)} className="product-link" data-id={2} draggable="true">
+              <i
+                className="bi bi-eye-fill"
+                
+              />
             </a>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href="#" draggable="true">
