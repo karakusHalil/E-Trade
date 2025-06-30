@@ -1,9 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import PropTypes from "prop-types";
 import { CartContext } from "../../../contexts/CartProvider";
 
 const CartTotals = () => {
-  const { cartItems } = useContext(CartContext);
-  console.log(cartItems)
+  const { cartItems, calculatePrice } = useContext(CartContext);
+  const [fastCargo, setFastCargo] = useState(false);
+
+  const totalPrice = cartItems.map((product) => {
+    return calculatePrice(product);
+  });
+  //  console.log(totalPrice);
+  const cargoPrice = 15.0;
+  const subtotal = totalPrice.reduce((prev, current) => prev + current, 0);
+  console.log(subtotal);
+  const generalTotal = fastCargo
+    ? (subtotal + cargoPrice).toFixed(2)
+    : subtotal.toFixed(2);
   return (
     <>
       <div className="cart-totals">
@@ -13,7 +25,7 @@ const CartTotals = () => {
             <tr className="cart-subtotal">
               <th>Subtotal</th>
               <td>
-                <span id="subtotal">$316.00</span>
+                <span id="subtotal">${subtotal.toFixed(2)}</span>
               </td>
             </tr>
             <tr>
@@ -23,7 +35,12 @@ const CartTotals = () => {
                   <li>
                     <label>
                       Fast Cargo: $15.00
-                      <input type="checkbox" id="fast-cargo" />
+                      <input
+                        type="checkbox"
+                        id="fast-cargo"
+                        checked={fastCargo}
+                        onChange={() => setFastCargo(!fastCargo)}
+                      />
                     </label>
                   </li>
                   <li>
@@ -35,7 +52,7 @@ const CartTotals = () => {
             <tr>
               <th>Total</th>
               <td>
-                <strong id="cart-total">$316.00</strong>
+                <strong id="cart-total">${generalTotal}</strong>
               </td>
             </tr>
           </tbody>
@@ -49,3 +66,13 @@ const CartTotals = () => {
 };
 
 export default CartTotals;
+
+CartTotals.propTypes = {
+  cartItems: PropTypes.shape({
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    discount: PropTypes.number,
+  }).isRequired,
+  calculatePrice: PropTypes.func,
+};
