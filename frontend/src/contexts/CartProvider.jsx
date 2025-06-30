@@ -7,6 +7,11 @@ const CartProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("cartItems"))
       : []
   );
+
+  const calculatePrice = (product) => {
+    return product.price - product.price * (product.discount / 100);
+  };
+
   const addToCart = (cartItem) => {
     setCartItems([...cartItems, cartItem]);
   };
@@ -29,6 +34,7 @@ const CartProvider = ({ children }) => {
           cartItems: cartItems,
           setCartItems: setCartItems,
           removeFromCart: removeFromCart,
+          calculatePrice: calculatePrice,
         }}
       >
         {children}

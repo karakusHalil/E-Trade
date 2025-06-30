@@ -16,8 +16,8 @@ const ProductItem = ({ product }) => {
       >
         <div className="product-image">
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a href="#" draggable="true">
-            <img src={product.images[0]} alt={product.name} className="img1" />
+          <a href={`/product/${product._id}`} draggable="true">
+            <img src={product.images[0]} alt={product.name} className="img1" onClick={() => navigate()}/>
             <img src={product.images[1]} alt={product.name} className="img2" />
           </a>
         </div>

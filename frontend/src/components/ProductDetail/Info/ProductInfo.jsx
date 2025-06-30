@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import "./ProductInfo.css";
+import { useEffect, useState, useContext } from "react";
 import PropTypes from "prop-types";
+import { CartContext } from "../../../contexts/CartProvider";
+import "./ProductInfo.css";
 
 const ProductInfo = ({ singleProduct }) => {
+  const { addToCart } = useContext(CartContext);
   const [product, setProduct] = useState(null);
   useEffect(() => {
     setProduct(singleProduct);
@@ -86,6 +88,7 @@ const ProductInfo = ({ singleProduct }) => {
                 className="btn btn-lg btn-primary"
                 id="add-to-cart"
                 type="button"
+                onClick={() => addToCart(product)}
               >
                 Add to cart
               </button>
