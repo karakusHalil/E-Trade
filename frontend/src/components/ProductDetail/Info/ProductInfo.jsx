@@ -73,7 +73,15 @@ const ProductInfo = ({ singleProduct }) => {
               </div>
             </div>
             <div className="cart-button">
-              <input type="number" defaultValue={1} min={1} id="quantity" />
+              <input
+                type="number"
+                defaultValue={1}
+                min={1}
+                max={10}
+                id="quantity"
+                style={{ cursor: "default", userSelect: "none" }}
+                onKeyDown={(e) => e.preventDefault()}
+              />
               <button
                 className="btn btn-lg btn-primary"
                 id="add-to-cart"
@@ -102,7 +110,7 @@ const ProductInfo = ({ singleProduct }) => {
         <div className="product-meta">
           <div className="product-sku">
             <span>SKU:</span>
-            <strong>BE45VGRT</strong>
+            <strong>{product?.stockCode}</strong>
           </div>
           <div className="product-categories">
             <span>Categories:</span>
