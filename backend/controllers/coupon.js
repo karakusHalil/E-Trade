@@ -1,19 +1,14 @@
 const CouponRepository = require("../repositories/CouponRepository.js");
-
+const validateCoupon = require("../utils/validateCoupon.js");
 //Create Coupon
 
 const createCoupon = async (req, res) => {
   try {
-    const { code, discount, expired, count } = req.body;
-    if (!code || !discount || !expired || !count) {
-      return res.status(400).json({ error: "Zorunlu alanları doldurun !" });
+    const { isValid, errors } = validateCoupon(req.body);
+    if (!isValid) {
+      return res.status(400).json({ errors });
     }
-    const newCoupon = await CouponRepository.create({
-      code,
-      discount,
-      expired,
-      count,
-    });
+    const newCoupon = await CouponRepository.create(req.body);
     res.status(201).json(newCoupon);
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
@@ -31,8 +26,22 @@ const getAllCoupons = async (req, res) => {
   }
 };
 
-//GetCouponByID
+//GetCouponByCouponCode
 
+const getCouponByCode = async (req, res) => {
+  try {
+    const { code } = req.params;
+    const coupon = await CouponRepository.getByCode(code);
+    if (!coupon) {
+      return res.status(404).json("Coupon Bulunamadı ! ");
+    }
+    res.status(200).json(coupon);
+  } catch (error) {
+    res.status(500).json({ error: "Sunucu Hatası !" });
+  }
+};
+
+//GetCouponById
 const getCouponById = async (req, res) => {
   try {
     const couponId = req.params.couponId;
@@ -50,12 +59,12 @@ const getCouponById = async (req, res) => {
 
 const updateCoupon = async (req, res) => {
   try {
-    const couponId = req.params.couponId;
-    const updateData = req.body;
-    const updatedCoupon = await CouponRepository.update(
-      couponId,
-      updateData,
-    );
+    const { couponId } = req.params.couponId;
+    const { isValid, errors } = validateCoupon(req.body);
+    if (!isValid) {
+      return res.status(404).json({ errors });
+    }
+    const updatedCoupon = await CouponRepository.update(couponId, req.body);
     if (!updatedCoupon) {
       return res.status(404).json({ error: "Coupon bulunamadı !" });
     }
@@ -86,4 +95,5 @@ module.exports = {
   createCoupon,
   updateCoupon,
   deleteCoupon,
+  getCouponByCode,
 };
