@@ -70,7 +70,7 @@
 }
 
 .site-main .colors .color-wrapper {
-  border: 1px solid transparent;
+  border: 3px solid transparent;
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -100,21 +100,69 @@
   cursor: pointer;
 }
 
-.site-main .colors .color-wrapper .blue-color {
-  background-color: blue;
+.Black-color {
+  background-color: black;
 }
-
-.site-main .colors .color-wrapper .red-color {
+.White-color {
+  background-color: white;
+  border: 1px solid #ccc; /* beyaz arka planda görünmesi için */
+}
+.Gray-color {
+  background-color: gray;
+}
+.Red-color {
   background-color: red;
 }
-
-.site-main .colors .color-wrapper .green-color {
+.Green-color {
   background-color: green;
 }
-
-.site-main .colors .color-wrapper .purple-color {
+.Blue-color {
+  background-color: blue;
+}
+.Yellow-color {
+  background-color: yellow;
+}
+.Pink-color {
+  background-color: pink;
+}
+.Purple-color {
   background-color: purple;
 }
+.Orange-color {
+  background-color: orange;
+}
+.Brown-color {
+  background-color: brown;
+}
+.Navy-color {
+  background-color: navy;
+}
+.Lime-color {
+  background-color: lime;
+}
+.Aqua-color {
+  background-color: aqua;
+}
+.Teal-color {
+  background-color: teal;
+}
+.Maroon-color {
+  background-color: maroon;
+}
+.Olive-color {
+  background-color: olive;
+}
+.Cyan-color {
+  background-color: cyan;
+}
+.Indigo-color {
+  background-color: indigo;
+}
+.Gold-color {
+  background-color: gold;
+}
+
+
 
 .site-main .values {
   display: flex;

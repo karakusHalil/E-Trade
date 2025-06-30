@@ -3,13 +3,18 @@ import "./ProductInfo.css";
 import PropTypes from "prop-types";
 
 const ProductInfo = ({ singleProduct }) => {
-  if (!singleProduct) return <div>Loading...</div>;
+  const [product, setProduct] = useState(null);
+  useEffect(() => {
+    setProduct(singleProduct);
+  }, [singleProduct]);
+
+  if (!product) return null;
   const discountPrice =
-    singleProduct.price - singleProduct.price * (singleProduct.discount / 100);
+    product.price - product.price * (product.discount / 100);
   return (
     <>
       <div className="product-info">
-        <h1 className="product-title">{singleProduct.name}</h1>
+        <h1 className="product-title">{product.name}</h1>
         <div className="product-review">
           <ul className="product-star">
             <li>
@@ -31,10 +36,10 @@ const ProductInfo = ({ singleProduct }) => {
           <span>2 reviews</span>
         </div>
         <div className="product-price">
-          <s className="old-price">${singleProduct.price.toFixed(2)}</s>
+          <s className="old-price">${product.price.toFixed(2)}</s>
           <strong className="new-price">${discountPrice.toFixed(2)}</strong>
         </div>
-        <p className="product-description">{singleProduct.description}</p>
+        <p className="product-description">{product.description}</p>
         <form className="variations-form">
           <div className="variations">
             <div className="colors">
@@ -42,26 +47,15 @@ const ProductInfo = ({ singleProduct }) => {
                 <span>Color</span>
               </div>
               <div className="colors-wrapper">
-                <div className="color-wrapper">
-                  <label className="blue-color">
-                    <input type="radio" name="product-color" />
-                  </label>
-                </div>
-                <div className="color-wrapper">
-                  <label className="red-color">
-                    <input type="radio" name="product-color" />
-                  </label>
-                </div>
-                <div className="color-wrapper active">
-                  <label className="green-color">
-                    <input type="radio" name="product-color" />
-                  </label>
-                </div>
-                <div className="color-wrapper">
-                  <label className="purple-color">
-                    <input type="radio" name="product-color" />
-                  </label>
-                </div>
+                {product?.colors.map((color, index) => {
+                  return (
+                    <div className="color-wrapper" key={index}>
+                      <label className={`${color}-color`}>
+                        <input type="radio" name="product-color" />
+                      </label>
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="values">
