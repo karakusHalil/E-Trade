@@ -2,7 +2,7 @@ const Coupon = require("../models/Coupon");
 
 const CouponRepository = {
   getAll: () => Coupon.find(),
-  getById: (couponId) => Coupon.findById(),
+  getById: (couponId) => Coupon.findById(couponId),
   create: (couponData) => Coupon.create(couponData),
   update: (couponId, updateData) =>
     Coupon.findByIdAndUpdate(couponId, updateData, {
