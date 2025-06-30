@@ -63,11 +63,13 @@ const ProductInfo = ({ singleProduct }) => {
                 <span>Size</span>
               </div>
               <div className="values-list">
-                <span className="active">XS</span>
-                <span>S</span>
-                <span>M</span>
-                <span>L</span>
-                <span>XL</span>
+                {product?.sizes.map((size, index) => {
+                  return (
+                    <span className="" key={index}>
+                      {size}
+                    </span>
+                  );
+                })}
               </div>
             </div>
             <div className="cart-button">
