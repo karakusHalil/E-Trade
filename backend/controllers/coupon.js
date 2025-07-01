@@ -30,7 +30,7 @@ const getAllCoupons = async (req, res) => {
 
 const getCouponByCode = async (req, res) => {
   try {
-    const { code } = req.params;
+    const code = req.params.code;
     const coupon = await CouponRepository.getByCode(code);
     if (!coupon) {
       return res.status(404).json("Coupon Bulunamadı ! ");
