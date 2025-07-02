@@ -3,7 +3,7 @@ import "./Coupon.css"
 const Coupon = () => {
   return (
     <>
-    
+   
     </>
   )
 }
