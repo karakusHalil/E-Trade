@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { Layout } from "./Layouts/Layout.jsx";
 import CartProvider from "./contexts/CartProvider.jsx";
 import "./index.css";
+import 'antd/dist/reset.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
