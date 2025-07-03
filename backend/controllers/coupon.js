@@ -35,8 +35,8 @@ const getCouponByCode = async (req, res) => {
     if (!coupon) {
       return res.status(404).json("Coupon Bulunamadı ! ");
     }
-    const { code: couponCode, discount, expired, count } = coupon;
-    res.status(200).json({ code: couponCode, discount, expired, count });
+    const { code: couponCode, _id, discount, expired, count } = coupon;
+    res.status(200).json({ code: couponCode, _id, discount, expired, count });
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
   }
