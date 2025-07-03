@@ -17,7 +17,20 @@ const CartCoupon = () => {
         return message.warning("Geçersiz kupon kodu !");
       }
       const data = await response.json();
-      console.log(data);
+      if (new Date(data.expired).getTime() < Date.now()) {
+        return message.warning("Girdiğiniz kupon süresi dolmuştur !");
+      }
+
+      if (!data.count > 0) {
+        return message.warning("Girdiğiniz kupon süresi dolmuştur !");
+      }
+
+      const updatedCart = cartItems.map((item) => {
+        const updatedUnitPrice = item.price * (1 - data.discount / 100);
+        console.log("updatedUnitPrice:", updatedUnitPrice);
+        return { ...item, price: updatedUnitPrice };
+      });
+      setCartItems(updatedCart);
     } catch (error) {
       console.log("Sunucu Hatası !");
     }

@@ -9,10 +9,10 @@ const CartTotals = () => {
   const totalPrice = cartItems.map((product) => {
     return calculatePrice(product);
   });
-  //  console.log(totalPrice);
+  console.log("totalPrice:", totalPrice);
   const cargoPrice = 15.0;
   const subtotal = totalPrice.reduce((prev, current) => prev + current, 0);
-  console.log(subtotal);
+  console.log("subtotal:", subtotal);
   const generalTotal = fastCargo
     ? (subtotal + cargoPrice).toFixed(2)
     : subtotal.toFixed(2);
@@ -68,7 +68,7 @@ const CartTotals = () => {
 export default CartTotals;
 
 CartTotals.propTypes = {
-  cartItems: PropTypes.shape({
+  cartItems: PropTypes.arrayOf({
     images: PropTypes.arrayOf(PropTypes.string).isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
