@@ -21,9 +21,16 @@ const CartCoupon = () => {
         return message.warning("Girdiğiniz kupon süresi dolmuştur !");
       }
 
-      if (!data.count > 0) {
+      if (data.count <= 0) {
         return message.warning("Girdiğiniz kupon süresi dolmuştur !");
       }
+
+      await fetch(`http://localhost:5100/api/coupons/${data._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       const updatedCart = cartItems.map((item) => {
         const updatedUnitPrice = item.price * (1 - data.discount / 100);

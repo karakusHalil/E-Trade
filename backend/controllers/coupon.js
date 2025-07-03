@@ -50,6 +50,14 @@ const getCouponById = async (req, res) => {
     if (!coupon) {
       return res.status(404).json("Coupon Bulunamadı ! ");
     }
+
+    if (coupon.count <= 0) {
+      return res.status(400).json("Kupon Tükenmiştir !");
+    }
+
+    coupon.count -= 1;
+    await coupon.save();
+
     res.status(200).json(coupon);
   } catch (error) {
     res.status(500).json({ error: "Sunucu Hatası !" });
