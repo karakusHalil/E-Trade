@@ -5,7 +5,12 @@ const validateCoupon = ({ code, discount, expired, count }) => {
     errors.code = "Kod zorunludur ve boş olamaz.";
   }
 
-  if (discount == null || typeof discount !== "number" || discount < 0 || discount > 100) {
+  if (
+    discount == null ||
+    typeof discount !== "number" ||
+    discount < 0 ||
+    discount > 100
+  ) {
     errors.discount = "İndirim oranı 0 ile 100 arasında bir sayı olmalıdır.";
   }
 
@@ -13,8 +18,8 @@ const validateCoupon = ({ code, discount, expired, count }) => {
     errors.expired = "Geçerli bir son kullanma tarihi belirtilmelidir.";
   }
 
-  if (count == null || typeof count !== "number" || count < 1) {
-    errors.count = "Kullanım sayısı en az 1 olmalıdır.";
+  if (count == null || typeof count !== "number" || count < 0) {
+    errors.count = "Kullanım sayısı 0 veya daha büyük bir sayı olmalıdır.";
   }
 
   const isValid = Object.keys(errors).length === 0;
