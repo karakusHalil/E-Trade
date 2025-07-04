@@ -74,10 +74,7 @@ const updateCoupon = async (req, res) => {
     if (!existingCoupon) {
       return res.status(404).json({ error: "Coupon bulunamadı !" });
     }
-
-    const { count } = req.body;
-
-    if (count < 0) {
+    if (existingCoupon.count < 0) {
       return res
         .status(400)
         .json({ error: "Kupon kullanım hakkı kalmamıştır!" });
