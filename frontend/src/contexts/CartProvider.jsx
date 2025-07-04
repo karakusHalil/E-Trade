@@ -8,6 +8,9 @@ const CartProvider = ({ children }) => {
       : []
   );
 
+  const [couponCode, setCouponCode] = useState("");
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
   const calculatePrice = (product) => {
     return product.price - product.price * (product.discount / 100);
   };
@@ -35,6 +38,12 @@ const CartProvider = ({ children }) => {
           setCartItems: setCartItems,
           removeFromCart: removeFromCart,
           calculatePrice: calculatePrice,
+          couponCode: couponCode,
+          setCouponCode: setCouponCode,
+          couponDiscount: couponDiscount,
+          setCouponDiscount: setCouponDiscount,
+          isCouponApplied: isCouponApplied,
+          setIsCouponApplied: setIsCouponApplied,
         }}
       >
         {children}
