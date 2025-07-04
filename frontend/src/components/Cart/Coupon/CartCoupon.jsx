@@ -21,20 +21,32 @@ const CartCoupon = () => {
         return message.warning("Girdiğiniz kupon süresi dolmuştur !");
       }
 
-      if (data.count <= 0) {
-        return message.warning("Girdiğiniz kupon süresi dolmuştur !");
-      }
-
-      await fetch(`http://localhost:5100/api/coupons/${data._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const updateCoupon = async (coupon) => {
+        try {
+          if (coupon.count <= 0) {
+            return console.log("Kupon kullanım hakkı kalmamıştır !");
+          }
+          const updatedCount = coupon.count - 1;
+          await fetch(`http://localhost:5100/api/coupons/${coupon._id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              code: coupon.code,
+              discount: coupon.discount,
+              expired: coupon.expired,
+              count: updatedCount,
+            }),
+          });
+          console.log(data);
+        } catch (error) {
+          console.log("Sunucu Hatası !");
+        }
+      };
+      await updateCoupon(data);
 
       const updatedCart = cartItems.map((item) => {
         const updatedUnitPrice = item.price * (1 - data.discount / 100);
-        console.log("updatedUnitPrice:", updatedUnitPrice);
+        // console.log("updatedUnitPrice:", updatedUnitPrice);
         return { ...item, price: updatedUnitPrice };
       });
       setCartItems(updatedCart);
