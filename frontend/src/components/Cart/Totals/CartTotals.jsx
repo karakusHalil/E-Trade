@@ -3,15 +3,14 @@ import PropTypes from "prop-types";
 import { CartContext } from "../../../contexts/CartProvider";
 
 const CartTotals = () => {
-  const { cartItems, calculatePrice } = useContext(CartContext);
+  const { cartItems, calculatePrice, couponDiscount } = useContext(CartContext);
   const [fastCargo, setFastCargo] = useState(false);
-
   const totalPrice = cartItems.map((product) => {
     return calculatePrice(product);
   });
-  // console.log("totalPrice:", totalPrice);
   const cargoPrice = 15.0;
-  const subtotal = totalPrice.reduce((prev, current) => prev + current, 0);
+  let subtotal = totalPrice.reduce((prev, current) => prev + current, 0);
+  subtotal = subtotal * (1 - couponDiscount / 100);
   // console.log("subtotal:", subtotal);
   const generalTotal = fastCargo
     ? (subtotal + cargoPrice).toFixed(2)
