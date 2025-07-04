@@ -24,7 +24,7 @@ const CartCoupon = () => {
       const updateCoupon = async (coupon) => {
         try {
           if (coupon.count <= 0) {
-            return console.log("Kupon kullanım hakkı kalmamıştır !");
+            return message.warning("Kupon kullanım hakkı kalmamıştır !");
           }
           const updatedCount = coupon.count - 1;
           await fetch(`http://localhost:5100/api/coupons/${coupon._id}`, {
