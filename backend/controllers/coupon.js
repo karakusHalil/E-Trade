@@ -68,7 +68,21 @@ const getCouponById = async (req, res) => {
 
 const updateCoupon = async (req, res) => {
   try {
-    const { couponId } = req.params.couponId;
+    const couponId = req.params.couponId;
+
+    const existingCoupon = await CouponRepository.getById(couponId);
+    if (!existingCoupon) {
+      return res.status(404).json({ error: "Coupon bulunamadı !" });
+    }
+
+    const { count } = req.body;
+
+    if (count < 0) {
+      return res
+        .status(400)
+        .json({ error: "Kupon kullanım hakkı kalmamıştır!" });
+    }
+
     const { isValid, errors } = validateCoupon(req.body);
     if (!isValid) {
       return res.status(404).json({ errors });
