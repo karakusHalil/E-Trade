@@ -23,23 +23,23 @@ const CartProvider = ({ children }) => {
   // };
 
   const addToCart = (cartItem) => {
-    console.log("addToCart çağrıldı:", cartItem);
+    // console.log("addToCart çağrıldı:", cartItem);
     setCartItems((prevCartItems) => {
       const existingIndex = prevCartItems.findIndex(
         (item) => item._id === cartItem._id
       );
 
       if (existingIndex !== -1) {
-        console.log("Ürün var, quantity artırılıyor");
+        // console.log("Ürün var, quantity artırılıyor");
         const updatedCart = [...prevCartItems];
         updatedCart[existingIndex] = {
           ...updatedCart[existingIndex],
           quantity: (updatedCart[existingIndex].quantity || 1) + 1,
         };
-        console.log("Yeni quantity:", updatedCart[existingIndex].quantity);
+        // console.log("Yeni quantity:", updatedCart[existingIndex].quantity);
         return updatedCart;
       } else {
-        console.log("Yeni ürün ekleniyor");
+        // console.log("Yeni ürün ekleniyor");
         return [...prevCartItems, { ...cartItem, quantity: 1 }];
       }
     });
