@@ -6,6 +6,11 @@ import "./Header.css";
 
 const Header = ({ setIsSearchVisible }) => {
   const { cartItems } = useContext(CartContext);
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + (item.quantity || 1),
+    0
+  );
+
   return (
     <>
       <header>
@@ -221,9 +226,7 @@ const Header = ({ setIsSearchVisible }) => {
                   <div className="header-cart">
                     <Link to="/cart" className="header-cart-link">
                       <i className="bi bi-bag" />
-                      <span className="header-cart-count">
-                        {cartItems.length}
-                      </span>
+                      <span className="header-cart-count">{totalQuantity}</span>
                     </Link>
                   </div>
                 </div>
