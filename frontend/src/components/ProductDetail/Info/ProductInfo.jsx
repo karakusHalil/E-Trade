@@ -6,6 +6,7 @@ import "./ProductInfo.css";
 const ProductInfo = ({ singleProduct }) => {
   const { addToCart } = useContext(CartContext);
   const [product, setProduct] = useState(null);
+  const [newQuantity, setNewQuantity] = useState(1);
   useEffect(() => {
     setProduct(singleProduct);
   }, [singleProduct]);
@@ -13,6 +14,7 @@ const ProductInfo = ({ singleProduct }) => {
   if (!product) return null;
   const discountPrice =
     product.price - product.price * (product.discount / 100);
+
   return (
     <>
       <div className="product-info">
@@ -78,17 +80,19 @@ const ProductInfo = ({ singleProduct }) => {
               <input
                 type="number"
                 defaultValue={1}
+                value={newQuantity}
                 min={1}
                 max={10}
                 id="quantity"
                 style={{ cursor: "default", userSelect: "none" }}
                 onKeyDown={(e) => e.preventDefault()}
+                onChange={(e) => setNewQuantity(Number(e.target.value))}
               />
               <button
                 className="btn btn-lg btn-primary"
                 id="add-to-cart"
                 type="button"
-                onClick={() => addToCart(product)}
+                 onClick={() => addToCart(product, newQuantity)}
               >
                 Add to cart
               </button>
