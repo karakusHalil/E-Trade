@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../../contexts/CartProvider";
 
 const CartTable = () => {
-  const { cartItems, removeFromCart } = useContext(CartContext);
+  const { cartItem, cartItems, removeFromCart } = useContext(CartContext);
   return (
     <>
       <table className="shop-table">
@@ -33,7 +33,7 @@ const CartTable = () => {
                 </td>
                 <td>{product.name}</td>
                 <td>${unitPrice.toFixed(2)}</td>
-                <td className="product-quantity">1</td>
+                <td className="product-quantity">{product.quantity}</td>
                 <td className="product-subtotal">
                   ${(unitPrice * 1).toFixed(2)}
                 </td>
