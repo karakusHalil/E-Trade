@@ -76,6 +76,22 @@
   font-weight: 600;
 }
 
+.product-quantity {
+  width: 80px;       /* Genişlik ayarı */
+  text-align: center; /* Metni ortaya hizala */
+}
+
+/* InputNumber içindeki input elementi */
+.product-quantity input {
+  text-align: center; /* Sayıların ortalanması için */
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  height: 32px;
+  box-sizing: border-box;
+}
+
 .cart-form table .product-quantity,
 .cart-form table .product-subtotal {
   text-align: center;
