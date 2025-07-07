@@ -22,30 +22,33 @@ const CartProvider = ({ children }) => {
   //   setCartItems([...cartItems, cartItem]);
   // };
 
-  const addToCart = (cartItem) => {
-    // console.log("addToCart çağrıldı:", cartItem);
-    setCartItems((prevCartItems) => {
-      const existingIndex = prevCartItems.findIndex(
-        (item) => item._id === cartItem._id
-      );
+ const addToCart = (cartItem, newQuantity = null) => {
+  setCartItems((prevCartItems) => {
+    const existingIndex = prevCartItems.findIndex(
+      (item) => item._id === cartItem._id
+    );
 
-      if (existingIndex !== -1) {
-        // console.log("Ürün var, quantity artırılıyor");
-        const updatedCart = [...prevCartItems];
-        updatedCart[existingIndex] = {
-          ...updatedCart[existingIndex],
-          quantity: (updatedCart[existingIndex].quantity || 1) + 1,
-        };
-        // console.log("Yeni quantity:", updatedCart[existingIndex].quantity);
-        return updatedCart;
-      } else {
-        // console.log("Yeni ürün ekleniyor");
-        return [...prevCartItems, { ...cartItem, quantity: 1 }];
-      }
-    });
-  };
+    if (existingIndex !== -1) {
+      const updatedCart = [...prevCartItems];
+      const currentQuantity = updatedCart[existingIndex].quantity || 1;
 
-  console.log("Sepet durumu:", cartItems);
+      updatedCart[existingIndex] = {
+        ...updatedCart[existingIndex],
+        quantity: newQuantity !== null ? newQuantity : currentQuantity + 1,
+      };
+
+      return updatedCart;
+    } else {
+      return [
+        ...prevCartItems,
+        { ...cartItem, quantity: newQuantity !== null ? newQuantity : 1 },
+      ];
+    }
+  });
+};
+
+
+  // console.log("Sepet durumu:", cartItems);
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
