@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
+import { message } from "antd";
+import { loadStripe } from "@stripe/stripe-js";
 import { CartContext } from "../../../contexts/CartProvider";
 
 const CartTotals = () => {
@@ -15,6 +17,47 @@ const CartTotals = () => {
   const generalTotal = fastCargo
     ? (subtotal + cargoPrice).toFixed(2)
     : subtotal.toFixed(2);
+
+  const user = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
+
+  const handlePayment = async () => {
+    if (!user) {
+      return message.info(
+        "Ödeme işlemleri için giriş yapmanız gerekmektedir !"
+      );
+    }
+    const body = {
+      products: cartItems,
+      totalPrice: subtotal,
+      user: user,
+      cargoFee: fastCargo ? cargoPrice : 0,
+    };
+    // console.log(body);
+    try {
+      const stripe = await loadStripe(process.env.REACT_APP_PUBLISHABLE_KEY);
+      const response = await fetch(`http://localhost:5100/api/payment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        return message.error("Ödeme işlemi başarısız !");
+      }
+      const session = await response.json();
+
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+      if (result.error) {
+        throw new Error(result.error.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="cart-totals">
@@ -57,7 +100,9 @@ const CartTotals = () => {
           </tbody>
         </table>
         <div className="checkout">
-          <button className="btn btn-lg">Proceed to checkout</button>
+          <button className="btn btn-lg" type="button" onClick={handlePayment}>
+            Proceed to checkout
+          </button>
         </div>
       </div>
     </>
