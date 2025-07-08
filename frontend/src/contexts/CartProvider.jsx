@@ -7,7 +7,10 @@ const CartProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("cartItems"))
       : []
   );
-
+  const clearCart = () => {
+    setCartItems([]); // Sepeti tamamen boşaltır
+    localStorage.removeItem("cartItems");
+  };
   const [couponCode, setCouponCode] = useState("");
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
@@ -77,6 +80,7 @@ const CartProvider = ({ children }) => {
           setCouponDiscount: setCouponDiscount,
           isCouponApplied: isCouponApplied,
           setIsCouponApplied: setIsCouponApplied,
+          clearCart: clearCart,
         }}
       >
         {children}
