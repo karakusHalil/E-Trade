@@ -20,6 +20,8 @@ import UpdateBlog from "./pages/Admin/Blogs/UpdateBlog";
 import BlogAdminList from "./pages/Admin/Blogs/BlogAdminList";
 import UserList from "./pages/Admin/User/UserList";
 import UpdateUser from "./pages/Admin/User/UpdateUser";
+import Success from "./pages/Success";
+import Cancel from "./pages/Cancel";
 import "./App.css";
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
         <Route path="/auth" element={<Account />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/blog/:id" element={<SingleBlog />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/cancel" element={<Cancel />} />
         <Route path="/admin/*">
           <Route index element={<Dashboard />} />
           <Route path="categories/list" element={<CategoryList />} />
